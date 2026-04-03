@@ -1,3 +1,5 @@
+"use client";
+
 import styles from './Pricing.module.css'
 
 const plans = [
@@ -53,42 +55,68 @@ export default function Pricing() {
 
   return (
     <section className={styles.section} id="precios">
+      
+      {/* HEADER */}
       <div className={styles.titleCenter}>
-        <span className="section-label">Planes</span>
-        <h2 className="section-title">
+        <span className={styles.label}>Planes</span>
+
+        <h2 className={styles.title}>
           Elige tu <em>experiencia</em>
         </h2>
       </div>
 
+      {/* CARDS */}
       <div className={styles.grid}>
         {plans.map((plan) => (
           <div
             key={plan.name}
             className={`${styles.plan} ${plan.featured ? styles.featured : ''}`}
           >
+            
+            {/* BADGE */}
             {plan.badge && (
-              <div className={styles.popularBadge}>{plan.badge}</div>
+              <div className={styles.popularBadge}>
+                {plan.badge}
+              </div>
             )}
+
+            {/* INFO */}
             <span className={styles.planTag}>{plan.tag}</span>
+
             <p className={styles.planName}>{plan.name}</p>
+
             <p className={styles.planPrice}>
               <sup>$</sup>{plan.price}
             </p>
+
             <p className={styles.planPeriod}>pago único · MXN</p>
+
             <div className={styles.divider} />
+
+            {/* FEATURES */}
             <ul className={styles.features}>
               {plan.features.map((f, i) => (
-                <li key={i} className={f.active ? styles.active : ''}>
+                <li 
+                  key={i} 
+                  className={f.active ? styles.active : ''}
+                >
                   {f.text}
                 </li>
               ))}
             </ul>
-            <button className={styles.planBtn} onClick={scrollToContact}>
+
+            {/* BUTTON */}
+            <button 
+              className={styles.planBtn} 
+              onClick={scrollToContact}
+            >
               Elegir plan
             </button>
+
           </div>
         ))}
       </div>
+
     </section>
   )
 }

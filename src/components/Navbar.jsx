@@ -25,7 +25,7 @@ export default function Navbar() {
       <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
         <li><button onClick={() => scrollTo('galeria')}>Invitaciones</button></li>
         <li><button onClick={() => scrollTo('precios')}>Precios</button></li>
-        <li><button onClick={() => scrollTo('contacto')}>Contacto</button></li>
+        <li className='tex-black'><button onClick={() => scrollTo('contacto')}>Contacto</button></li>
       </ul>
 
       <button className={styles.cta} onClick={() => scrollTo('contacto')}>

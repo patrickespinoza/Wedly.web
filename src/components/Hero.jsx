@@ -9,25 +9,32 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.ornament} />
 
-      <p className={styles.tag}>Invitaciones digitales para bodas</p>
+      {/* TAG */}
+      <p className={styles.tag}>
+        Invitaciones digitales de boda
+      </p>
 
+      {/* TITULO */}
       <h1 className={styles.heading}>
-        Cada amor<br />
-        merece una<br />
+        Cada amor <br />
+        merece una <br />
         <em>historia única</em>
       </h1>
 
+      {/* SUBTEXTO */}
       <p className={styles.sub}>
-        Invitaciones web elegantes y personalizadas que capturan
-        la esencia de tu día especial.
+        Creamos invitaciones web elegantes y personalizadas
+        que reflejan la esencia de tu gran día.
       </p>
 
+      {/* DIVIDER */}
       <div className={styles.divider}>
         <span />
-        <i>∿</i>
+        <i>✧</i>
         <span />
       </div>
 
+      {/* BOTONES */}
       <div className={styles.btns}>
         <button
           className={styles.btnPrimary}
@@ -35,14 +42,16 @@ export default function Hero() {
         >
           Ver invitaciones
         </button>
+
         <button
           className={styles.btnOutline}
           onClick={() => scrollTo('contacto')}
         >
-          Contáctanos
+          Contacto
         </button>
       </div>
 
+      {/* SCROLL */}
       <div className={styles.scroll}>
         <span>Descubrir</span>
         <div className={styles.scrollLine} />

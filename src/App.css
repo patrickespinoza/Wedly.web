@@ -7,16 +7,16 @@
 }
 
 :root {
-  --gold: #c9a96e;
-  --gold-light: #e8d5b0;
+  --gold: #674707;
+  --gold-light: #c39f57;
   --gold-dim: rgba(201, 169, 110, 0.15);
   --gold-border: rgba(201, 169, 110, 0.3);
-  --black: #0a0a0a;
-  --dark: #111111;
-  --card-bg: #151515;
-  --border: #2a2a2a;
-  --text: #e8e2d9;
-  --muted: #7a7068;
+  --black: #110d0d;
+  --white: #f5f1f1;
+  --card-bg: #0c0b0b;
+  --border: #f3eeee;
+  --text: #030202;
+  --muted: #c2946e;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Jost', sans-serif;
 }
@@ -27,7 +27,7 @@ html {
 
 body {
   background: var(--black);
-  color: var(--text);
+  color: var(--black);
   font-family: var(--font-sans);
   font-weight: 300;
   line-height: 1.6;

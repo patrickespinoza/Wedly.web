@@ -1,5 +1,5 @@
 .section {
-  background: var(--dark);
+  background: #ffffff; /* fondo blanco */
   border-top: 1px solid var(--border);
 }
 
@@ -9,9 +9,10 @@
   text-align: center;
 }
 
+/* TEXTO PRINCIPAL */
 .desc {
-  font-size: 0.83rem;
-  color: var(--muted);
+  font-size: 1rem; /* más grande */
+  color: #000; /* negro */
   line-height: 1.9;
   letter-spacing: 0.04em;
   margin-bottom: 3.5rem;
@@ -26,7 +27,7 @@
 }
 
 .card {
-  background: var(--card-bg);
+  background: #ffffff;
   border: 1px solid var(--border);
   padding: 2rem;
   display: flex;
@@ -39,55 +40,65 @@
 }
 
 .card:hover {
-  border-color: rgba(201, 169, 110, 0.4);
+  border-color: rgba(187, 146, 43, 0.4);
 }
 
 .icon {
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(201, 169, 110, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* TITULOS (WhatsApp / Correo) */
 .card h4 {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1.3rem; /* más grande */
+  font-weight: 500;
   letter-spacing: 0.05em;
-  color: var(--text);
+  color: #000; /* negro */
 }
 
+/* TEXTO (Respuesta inmediata) */
 .card p {
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
+  font-size: 0.9rem; /* más grande */
+  color: #000; /* negro */
+  letter-spacing: 0.08em;
 }
 
+/* LINK */
 .link {
-  font-size: 0.7rem;
+  font-size: 0.85rem; /* más grande */
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold);
-  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+  color: #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding-bottom: 2px;
   transition: border-color 0.2s;
 }
 
 .card:hover .link {
-  border-color: var(--gold);
+  border-color: #000;
 }
 
+/* TEXTO FINAL */
 .social {
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
+  font-size: 0.9rem; /* más grande */
+  color: #000;
+  letter-spacing: 0.08em;
 }
 
 .social strong {
-  color: var(--gold);
-  font-weight: 400;
+  color: #000;
+  font-weight: 500;
+}
+
+:global(.section-label) {
+  color: #000;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
 }
 
 @media (max-width: 600px) {
