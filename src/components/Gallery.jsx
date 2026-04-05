@@ -25,7 +25,7 @@ const invitations = [
     name: 'Premium',
     tag: 'Luxe',
     desc: 'Luxe',
-    image: "./Invitacion-03.png",
+    image: "./Invitacion-03.jpg",
   },
 ]
 
