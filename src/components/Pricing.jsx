@@ -6,14 +6,13 @@ const plans = [
   {
     tag: 'Esencial',
     name: 'Básico',
-    price: '400',
+    price: '300',
     featured: false,
     features: [
       { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
-      { text: '1 diseño a Elegir', active: true },
+      { text: 'Personalizacion foto de portada', active: true },
       { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
       { text: 'Codigo de Vestimenta', active: true },
-      { text: 'Carrusel de Fotos', active: true },
       { text: 'Itinerario', active: true },
       { text: 'Confirmacion de asistencia por Google Forms', active: true },
     ],
