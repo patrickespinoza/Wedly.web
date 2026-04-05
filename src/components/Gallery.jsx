@@ -9,7 +9,7 @@ const invitations = [
     name: 'Clasica',
     tag: 'Clasico',
     desc: 'Elegancia clasica',
-    image: "./Invitacion-01.png",
+    image: "./Invitacion-01.png", 
   },
   {
     id: 2,
