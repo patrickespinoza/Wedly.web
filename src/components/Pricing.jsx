@@ -6,52 +6,72 @@ const plans = [
   {
     tag: 'Esencial',
     name: 'Básico',
-    price: '499',
+    price: '400',
     featured: false,
     features: [
-      { text: '1 diseño de invitación', active: true },
-      { text: 'Hasta 100 invitados', active: true },
-      { text: 'Confirmación RSVP', active: true },
-      { text: 'Galería de fotos', active: false },
-      { text: 'Música de fondo', active: false },
-      { text: 'Soporte prioritario', active: false },
+      { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
+      { text: '1 diseño a Elegir', active: true },
+      { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
+      { text: 'Codigo de Vestimenta', active: true },
+      { text: 'Carrusel de Fotos', active: true },
+      { text: 'Itinerario', active: true },
+      { text: 'Confirmacion de asistencia por Google Forms', active: true },
     ],
   },
   {
     tag: 'Completo',
     name: 'Elegance',
-    price: '899',
+    price: '800',
     featured: true,
     badge: 'Más popular',
     features: [
-      { text: '1 diseño personalizado', active: true },
-      { text: 'Invitados ilimitados', active: true },
-      { text: 'Confirmación RSVP', active: true },
-      { text: 'Galería de fotos', active: true },
-      { text: 'Música de fondo', active: true },
-      { text: 'Soporte prioritario', active: false },
+      { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
+      { text: 'Imagenes Personalizadas y Diseño', active: true },
+      { text: 'Cuenta Regresiva', active: true },
+      { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
+      { text: 'Detalles del Evento (Codigo de vestimenta)', active: true },
+      { text: 'Carrusel de Fotos', active: true },
+      { text: 'Mesa de Regalos o Cuenta para deposito', active: true },
+      { text: 'Confirmacion de asistencia por Whatsap y Lista de Excel', active: true },
     ],
   },
   {
     tag: 'Premium',
     name: 'Luxe',
-    price: '1,399',
+    price: '1,400',
     featured: false,
     features: [
-      { text: 'Diseño completamente a medida', active: true },
-      { text: 'Invitados ilimitados', active: true },
-      { text: 'Confirmación RSVP', active: true },
-      { text: 'Galería de fotos premium', active: true },
-      { text: 'Música de fondo', active: true },
-      { text: 'Soporte prioritario 24/7', active: true },
+      { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
+      { text: 'Invitacion con Musica', active: true },
+      { text: 'Imagenes Personalizadas y Diseño', active: true },
+      { text: 'Cuenta Regresiva', active: true },
+      { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
+      { text: 'Carrusel de Fotos', active: true },
+      { text: 'Itinerario del Evento', active: true },
+      { text: 'Detalles del Evento (Codigo de vestimenta)', active: true },
+      { text: 'Album Compartido (Wedshoots tus invitados pueden tomar fotos y compartirlas en un albun contigo, para no perder ningun momento)', active: true },
+      { text: 'Encuesta de Cuanto conocen a los novios con ranking de mayor acertados por invitado', active: true },
+      { text: 'Mesa de regalos o Cuenta deposito', active: true },
+      { text: 'Confirmacion de asistencia (Nombre, confirmacion, numero de invitados y mensaje para novios)', active: true },
     ],
   },
 ]
 
 export default function Pricing() {
-  const scrollToContact = () => {
-    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })
-  }
+
+  // 👉 FUNCIÓN PARA WHATSAPP
+   const sendToWhatsApp = (plan) => {
+  const phone = "522214105012";
+
+  const message = `Hola 👋, me interesa el plan *${plan.name}* ($${plan.price} MXN).
+
+¿Podrías ayudarme con más información? 😊`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+};
+
 
   return (
     <section className={styles.section} id="precios">
@@ -108,9 +128,9 @@ export default function Pricing() {
             {/* BUTTON */}
             <button 
               className={styles.planBtn} 
-              onClick={scrollToContact}
+              onClick={() => sendToWhatsApp(plan)}
             >
-              Elegir plan
+              Reservar este plan
             </button>
 
           </div>
