@@ -6,8 +6,8 @@
   z-index: 100;
   padding: 1.5rem 4rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center; /* 🔥 centrado real */
   transition: background 0.4s, border-color 0.4s;
   border-bottom: 1px solid transparent;
 }
@@ -18,7 +18,11 @@
   border-bottom-color: rgba(201, 169, 110, 0.12);
 }
 
+/* LOGO */
 .logo {
+  position: absolute; /* 🔥 clave para centrar links */
+  left: 4rem;
+
   font-family: var(--font-serif);
   font-size: 1.7rem;
   font-weight: 300;
@@ -33,16 +37,18 @@
   font-weight: 400;
 }
 
+/* LINKS CENTRADOS */
 .links {
   display: flex;
-  gap: 2.5rem;
+  gap: 3.5rem; /* 🔥 más espacio */
   list-style: none;
 }
 
+/* LINKS TEXTO */
 .links button {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.95rem; /* 🔥 más grande */
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
   background: none;
@@ -50,12 +56,26 @@
   cursor: pointer;
   transition: color 0.3s;
   padding: 0;
+  position: relative;
 }
 
-.links button:hover {
-  color: var(--gold);
+/* HOVER PREMIUM */
+.links button::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
 }
 
+.links button:hover::after {
+  width: 100%;
+}
+
+/* CTA (si lo vuelves a usar) */
 .cta {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -73,6 +93,7 @@
   color: var(--black);
 }
 
+/* HAMBURGER */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -91,11 +112,17 @@
   transition: all 0.3s;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav {
     padding: 1.2rem 1.5rem;
+    justify-content: space-between; /* 👈 vuelve a normal */
     background: rgba(10, 10, 10, 0.95);
     border-bottom-color: rgba(201, 169, 110, 0.12);
+  }
+
+  .logo {
+    position: static; /* 👈 importante para mobile */
   }
 
   .links {

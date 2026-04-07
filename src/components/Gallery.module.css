@@ -70,20 +70,7 @@
   background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
 }
 
-/* BADGE */
-.badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 0.35rem 0.8rem;
-  background: rgba(201, 166, 70, 0.15);
-  border: 1px solid rgba(201, 166, 70, 0.4);
-  color: #C9A646;
-  z-index: 2; /* 🔥 para que quede encima */
-}
+
 
 /* INFO */
 .cardInfo {

@@ -17,7 +17,7 @@ const invitations = [
     name: 'Completo',
     tag: 'Elegance',
     desc: 'Elegance',
-    image: "./Invitacion-02.png",
+    image: "./Invitacion-02.jpg",
   },
   {
     id: 3,

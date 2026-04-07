@@ -51,11 +51,7 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* SCROLL */}
-      <div className={styles.scroll}>
-        <span>Descubrir</span>
-        <div className={styles.scrollLine} />
-      </div>
+
     </section>
   )
 }

@@ -28,9 +28,7 @@ export default function Navbar() {
         <li className='tex-black'><button onClick={() => scrollTo('contacto')}>Contacto</button></li>
       </ul>
 
-      <button className={styles.cta} onClick={() => scrollTo('contacto')}>
-        Solicitar demo
-      </button>
+
 
       <button
         className={styles.hamburger}
