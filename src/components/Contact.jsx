@@ -35,38 +35,37 @@ export default function Contact() {
             <span className={styles.link}>Escribir mensaje →</span>
           </a>
 
-          {/* FACEBOOK */}
-          <a
-            href="https://facebook.com/"
-            target="_blank"
-            rel="noreferrer"
-            className={styles.card}
-          >
-            <div className={styles.icon}>
-              {/* ICONO FACEBOOK */}
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.5">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-            </div>
+        
+  {/* INSTAGRAM */}
+<a
+  href="https://instagram.com/wedly_680"
+  target="_blank"
+  rel="noreferrer"
+  className={styles.card}
+>
+  <div className={styles.icon}>
+    {/* ICONO INSTAGRAM */}
+    <svg 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="#000" 
+      strokeWidth="1.5"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17" cy="7" r="1.5"/>
+    </svg>
+  </div>
 
-            <h4>Facebook</h4>
-            <p>@wedly.mx</p>
+  <h4>Instragram</h4>
+  <p>@Wedly6</p>
 
-            <span className={styles.link}>Ir a Facebook →</span>
-          </a>
+  <span className={styles.link}>Ir a Instragram →</span>
+</a>
         </div>
 
-        {/* INSTAGRAM + CORREO */}
-        <p className={styles.social}>
-          También disponibles en Instagram ·{" "}
-          <a
-            href="https://instagram.com/wedly.mx"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <strong>@wedly.mx</strong>
-          </a>
-        </p>
 
         {/* CORREO ABAJO */}
         <p className={styles.social}>

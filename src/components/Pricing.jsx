@@ -20,7 +20,10 @@ const plans = [
   {
     tag: 'Completo',
     name: 'Elegance',
-    price: '800',
+    price: {
+      original: 800,
+      discount: 500
+    },
     featured: true,
     badge: 'Más popular',
     features: [
@@ -37,7 +40,10 @@ const plans = [
   {
     tag: 'Premium',
     name: 'Luxe',
-    price: '1,400',
+    price: {
+      original: 1400,
+      discount: 800
+    },
     featured: false,
     features: [
       { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
@@ -59,18 +65,22 @@ const plans = [
 export default function Pricing() {
 
   // 👉 FUNCIÓN PARA WHATSAPP
-   const sendToWhatsApp = (plan) => {
-  const phone = "522214105012";
+  const sendToWhatsApp = (plan) => {
+    const phone = "522214105012";
 
-  const message = `Hola 👋, me interesa el plan *${plan.name}* ($${plan.price} MXN).
+    const priceText =
+      typeof plan.price === "object"
+        ? plan.price.discount
+        : plan.price;
+
+    const message = `Hola 👋, me interesa el plan *${plan.name}* ($${priceText} MXN).
 
 ¿Podrías ayudarme con más información? 😊`;
 
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  window.open(url, "_blank");
-};
-
+    window.open(url, "_blank");
+  };
 
   return (
     <section className={styles.section} id="precios">
@@ -104,13 +114,42 @@ export default function Pricing() {
 
             <p className={styles.planName}>{plan.name}</p>
 
-            <p className={styles.planPrice}>
-              <sup>$</sup>{plan.price}
-            </p>
+            {/* 💰 PRECIO */}
+<p className={styles.planPrice}>
+  {typeof plan.price === "object" ? (
+    <>
+      {(() => {
+        const { original, discount } = plan.price;
+        const percent = Math.round(((original - discount) / original) * 100);
+        const ahorro = original - discount;
 
-            <p className={styles.planPeriod}>pago único · MXN</p>
+        return (
+          <div className={styles.priceBox}>
+            <span className={styles.old}>
+              <sup>$</sup>{original}
+            </span>
 
-            <div className={styles.divider} />
+            <span className={styles.new}>
+              <sup>$</sup>{discount}
+            </span>
+
+            <span className={styles.badgeOff}>
+              -{percent}% OFF
+            </span>
+
+            <span className={styles.save}>
+              Ahorras ${ahorro}
+            </span>
+          </div>
+        );
+      })()}
+    </>
+  ) : (
+    <>
+      <sup>$</sup>{plan.price}
+    </>
+  )}
+</p>
 
             {/* FEATURES */}
             <ul className={styles.features}>
