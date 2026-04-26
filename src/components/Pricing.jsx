@@ -39,14 +39,38 @@ const plans = [
   },
   {
     tag: 'Premium',
-    name: 'Luxe',
+    name: 'Premium',
     price: {
-      original: 1400,
+      original: 1000,
       discount: 800
     },
     featured: false,
     features: [
       { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
+      { text: 'Invitacion con Musica', active: true },
+      { text: 'Imagenes Personalizadas y Diseño', active: true },
+      { text: 'Cuenta Regresiva', active: true },
+      { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
+      { text: 'Carrusel de Fotos', active: true },
+      { text: 'Itinerario del Evento', active: true },
+      { text: 'Detalles del Evento (Codigo de vestimenta)', active: true },
+      { text: 'Album Compartido (Wedshoots tus invitados pueden tomar fotos y compartirlas en un albun contigo, para no perder ningun momento)', active: true },
+      { text: 'Encuesta de Cuanto conocen a los novios con ranking de mayor acertados por invitado', active: true },
+      { text: 'Mesa de regalos o Cuenta deposito', active: true },
+      { text: 'Confirmacion de asistencia (Nombre, confirmacion, numero de invitados y mensaje para novios)', active: true },
+    ],
+  },
+  {
+    tag: 'Premium',
+    name: 'Luxe',
+    price: {
+      original: 1400,
+      discount: 1000
+    },
+    featured: false,
+    features: [
+      { text: 'Invitacion digital personalizada con numero de pases lista para enviar por WhatsApp', active: true },
+      { text: 'Portada con sobre interactivo', active: true },
       { text: 'Invitacion con Musica', active: true },
       { text: 'Imagenes Personalizadas y Diseño', active: true },
       { text: 'Cuenta Regresiva', active: true },

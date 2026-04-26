@@ -24,9 +24,17 @@ const invitations = [
     url: "https://invitacion-web-03.vercel.app/",
     name: 'Premium',
     tag: 'Luxe',
-    desc: 'Luxe',
+    desc: 'Premium',
     image: "./Invitacion-03.jpg",
   },
+  {
+    id: 4,
+    url: "https://invitacion-web-04.vercel.app/",
+    name: 'Premium Luxe',
+    tag: 'Luxe',
+    desc: 'Premium Luxe',
+    image: "./Invitacion-04.jpg",
+  }
 ]
 
 export default function Gallery() {
