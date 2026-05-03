@@ -18,7 +18,7 @@ export default function Contact() {
         <div className={styles.cards}>
           {/* WHATSAPP */}
           <a
-            href="https://wa.me/522214105012"
+            href="https://wa.me/522224649120"
             target="_blank"
             rel="noreferrer"
             className={styles.card}
