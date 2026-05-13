@@ -160,7 +160,6 @@ export default function Pricing() {
             <span className={styles.badgeOff}>
               -{percent}% OFF
             </span>
-<Patito2706a></Patito2706a>
           </div>
         );
       })()}
