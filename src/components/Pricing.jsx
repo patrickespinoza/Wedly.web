@@ -11,6 +11,7 @@ const plans = [
     features: [
       { text: 'Invitacion digital lista para enviar por WhatsApp', active: true },
       { text: 'Personalizacion foto de portada', active: true },
+      { text: 'informacionde los padres', active: true },
       { text: 'Informacion del evento (Fecha, Hora, Ubicacion por Google Maps)', active: true },
       { text: 'Codigo de Vestimenta', active: true },
       { text: 'Itinerario', active: true },
@@ -90,7 +91,7 @@ export default function Pricing() {
 
   // 👉 FUNCIÓN PARA WHATSAPP
   const sendToWhatsApp = (plan) => {
-    const phone = "522214105012";
+    const phone = "522224649120";
 
     const priceText =
       typeof plan.price === "object"
