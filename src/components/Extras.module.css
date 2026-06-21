@@ -1,0 +1,487 @@
+.section {
+  width: 100%;
+  background: #f8f5ef;
+  padding: 90px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.label {
+  display: block;
+  color: #b89b5e;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  color: #5e6650;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.line {
+  width: 90px;
+  height: 1px;
+  background: #b89b5e;
+  margin: 24px auto;
+}
+
+.subtitle {
+  max-width: 650px;
+  margin: 0 auto;
+  color: rgba(94, 102, 80, 0.78);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(184, 155, 94, 0.25);
+  border-top-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+  padding: 32px 26px;
+  box-shadow: 0 10px 30px rgba(94, 102, 80, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 330px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(94, 102, 80, 0.14);
+}
+
+.selectedCard {
+  border-color: rgba(184, 155, 94, 0.75);
+  background: #fffaf0;
+  box-shadow: 0 18px 44px rgba(94, 102, 80, 0.16);
+}
+
+.addButton {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 155, 94, 0.45);
+  background: #f8f5ef;
+  color: #5e6650;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addButton:hover {
+  background: #5e6650;
+  color: #ffffff;
+  border-color: #5e6650;
+}
+
+.addedButton {
+  background: #5e6650;
+  color: #ffffff;
+  border-color: #5e6650;
+  font-size: 18px;
+}
+
+.cardLabel {
+  color: #b89b5e;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  margin-bottom: 16px;
+  padding-right: 46px;
+}
+
+.cardTitle {
+  font-family: "Playfair Display", serif;
+  color: #5e6650;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+
+.description {
+  color: rgba(94, 102, 80, 0.78);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+.smallLine {
+  width: 45px;
+  height: 1px;
+  background: #b89b5e;
+  margin: 24px 0;
+}
+
+.cardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.price {
+  font-family: "Playfair Display", serif;
+  color: #b89b5e;
+  font-size: 26px;
+  margin: 0;
+}
+
+.miniAction {
+  border: 1px solid rgba(94, 102, 80, 0.35);
+  background: transparent;
+  color: #5e6650;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.miniAction:hover {
+  background: #5e6650;
+  color: #ffffff;
+}
+
+.cartBox {
+  margin-top: 70px;
+  background: #5e6650;
+  border-top-left-radius: 48px;
+  border-bottom-right-radius: 48px;
+  padding: 42px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  box-shadow: 0 20px 50px rgba(94, 102, 80, 0.18);
+}
+
+.cartLabel {
+  display: block;
+  color: #b89b5e;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.cartBox h3 {
+  font-family: "Playfair Display", serif;
+  color: #ffffff;
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+.cartBox p {
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.viewButton {
+  border: 1px solid #b89b5e;
+  background: #b89b5e;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 15px 30px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover {
+  background: #ffffff;
+  color: #5e6650;
+  border-color: #ffffff;
+}
+
+.viewButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 35, 25, 0.55);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #f8f5ef;
+  border: 1px solid rgba(184, 155, 94, 0.35);
+  border-top-left-radius: 52px;
+  border-bottom-right-radius: 52px;
+  padding: 44px 34px 34px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  border: none;
+  background: transparent;
+  color: #5e6650;
+  font-size: 34px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modalLabel {
+  display: block;
+  color: #b89b5e;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.modal h3 {
+  font-family: "Playfair Display", serif;
+  color: #5e6650;
+  font-size: clamp(34px, 6vw, 48px);
+  font-weight: 500;
+  margin: 0 0 28px;
+  line-height: 1.1;
+}
+
+.summaryBlock {
+  background: #ffffff;
+  border: 1px solid rgba(184, 155, 94, 0.2);
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.summaryBlock h4 {
+  font-family: "Playfair Display", serif;
+  color: #5e6650;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(94, 102, 80, 0.85);
+  padding: 10px 0;
+  border-top: 1px solid rgba(184, 155, 94, 0.14);
+}
+
+.summaryItem:first-of-type {
+  border-top: none;
+}
+
+.summaryItem strong {
+  color: #b89b5e;
+  white-space: nowrap;
+}
+
+.summaryActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summaryActions button {
+  border: none;
+  background: transparent;
+  color: #5e6650;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.emptyText {
+  color: rgba(94, 102, 80, 0.65);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.totalBox {
+  margin: 26px 0;
+  padding: 22px;
+  background: #5e6650;
+  border-top-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.totalBox span {
+  color: rgba(255, 255, 255, 0.78);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+}
+
+.totalBox strong {
+  font-family: "Playfair Display", serif;
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.whatsappButton {
+  width: 100%;
+  border: 1px solid #b89b5e;
+  background: #b89b5e;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 16px 24px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whatsappButton:hover {
+  background: #5e6650;
+  border-color: #5e6650;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cartBox {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 70px 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 30px 24px;
+  }
+
+  .cardBottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .cartBox {
+    padding: 36px 24px;
+  }
+
+  .viewButton {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 42px 22px 28px;
+  }
+
+  .summaryItem,
+  .totalBox {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .summaryActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.cartActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.extraButton {
+  border: 1px solid rgba(184, 155, 94, 0.8);
+  background: transparent;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 15px 30px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.extraButton:hover {
+  background: #ffffff;
+  color: #5e6650;
+  border-color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .cartActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .extraButton,
+  .viewButton {
+    width: 100%;
+  }
+}

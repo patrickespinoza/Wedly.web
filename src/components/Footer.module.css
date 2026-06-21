@@ -1,41 +1,59 @@
 .footer {
-  padding: 2.5rem 4rem;
-  border-top: 1px solid var(--border);
+  padding: 70px 30px;
+  background: #5e6650;
+  border-top: 1px solid rgba(184, 155, 94, 0.25);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  background: var(--black);
+  gap: 20px;
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.6rem; /* 🔥 más grande */
-  font-weight: 400;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 500;
   letter-spacing: 0.18em;
-  color: var(--gold);
+  color: #f8f5ef;
+}
+
+.logo span {
+  color: #b89b5e;
 }
 
 .copy {
-  font-size: 0.9rem; /* 🔥 más legible */
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: rgba(248, 245, 239, 0.75);
 }
 
-/* RESPONSIVE */
+.copy strong {
+  color: #b89b5e;
+  font-weight: 500;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .footer {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* MOBILE */
 @media (max-width: 600px) {
   .footer {
-    padding: 2rem 1.5rem;
+    padding: 50px 20px;
     flex-direction: column;
-    text-align: center;
   }
 
   .logo {
-    font-size: 1.4rem; /* 👈 ajustado para móvil */
+    font-size: 1.7rem;
   }
 
   .copy {
     font-size: 0.85rem;
+    line-height: 1.8;
   }
 }
