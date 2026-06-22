@@ -63,16 +63,16 @@ const extras = [
   {
     id: "Version impresa",
     titulo: "Versión impresa",
-    precio: 100,
+    precio: 50,
     descripcion:
       "Agrega imagen de tu invitacion , para recuerdo.",
   },
   {
     id: "Encuesta",
-    titulo: "Encuenta de cuanto Conocen a los novios",
+    titulo: "Encuesta de cuanto Conocen a los novios",
     precio: 100,
     descripcion:
-      "Agrega una encuenta de 5 preguntas para que tus invitados respondan y puedas ver quienes conocemas mas su historia.",
+      "Agrega una encuesta de 5 preguntas para que tus invitados respondan y puedas ver quienes conocemas mas su historia.",
   },
 ];
 
