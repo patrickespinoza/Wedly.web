@@ -38,7 +38,7 @@ export default function Contact() {
         
   {/* INSTAGRAM */}
 <a
-  href="https://instagram.com/wedly_680"
+  href="https://instagram.com/wedly_invitaciones"
   target="_blank"
   rel="noreferrer"
   className={styles.card}
@@ -60,7 +60,7 @@ export default function Contact() {
   </div>
 
   <h4>Instragram</h4>
-  <p>@Wedly6</p>
+  <p>@wedly_invitaciones</p>
 
   <span className={styles.link}>Ir a Instragram →</span>
 </a>
