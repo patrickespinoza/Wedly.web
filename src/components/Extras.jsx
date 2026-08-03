@@ -74,6 +74,20 @@ const extras = [
     descripcion:
       "Agrega una encuesta de 5 preguntas para que tus invitados respondan y puedas ver quienes conocemas mas su historia.",
   },
+    {
+    id: "Hospedaje",
+    titulo: "Recomienda ubicaciones de hospedaje para tus invitados",
+    precio: 60,
+    descripcion:
+      "Agrega 3 a 4 hoteles o lugares con ubicacion para que tus invitados puedan elegir su hospedaje.",
+  },
+      {
+    id: "Menú",
+    titulo: "Seccion de seleccion de Menu",
+    precio: 100,
+    descripcion:
+      "Agrega una seccion en confirmacion para que tus invitados eligan el Menu que prefieren.",
+  },
 ];
 
 export default function Extras({

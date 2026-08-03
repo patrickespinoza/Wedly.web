@@ -5,46 +5,30 @@ import styles from './Gallery.module.css'
 const invitations = [
   {
     id: 1,
-    url: "https://invitacion-web-01-b69a.vercel.app/",
-    name: 'Clasica',
-    tag: 'Clasico',
-    desc: 'Elegancia clasica',
-    image: "./Invitacion-01.jpg", 
+    url: "https://prueba2-rho-one.vercel.app/",
+    name: 'XV Digital',
+    tag: 'XV Digital',
+    desc: 'XV Digital',
+    image: "./InvitacionXV01.jpg", 
   },
   {
     id: 2,
-    url: "https://invitacion-web-02.vercel.app/",
-    name: 'Completo',
-    tag: 'Elegance',
-    desc: 'Elegance',
-    image: "./Invitacion-02.jpg",
+    url: "https://prueba-mu-ivory.vercel.app/",
+    name: 'XV Premium',
+    tag: 'XV Premium',
+    desc: 'XV Premium',
+    image: "./InvitacionXV02.jpg",
   },
-  {
-    id: 3,
-    url: "https://invitacion-web-03.vercel.app/",
-    name: 'Premium',
-    tag: 'Luxe',
-    desc: 'Premium',
-    image: "./Invitacion-03.jpg",
-  },
-  {
-    id: 4,
-    url: "https://invitacion-web-04.vercel.app/",
-    name: 'Premium Luxe',
-    tag: 'Luxe',
-    desc: 'Premium Luxe',
-    image: "./Invitacion-04.jpg",
-  }
 ]
 
-export default function Gallery() {
+export default function GalleryXV() {
   return (
     <section className={styles.section} id="galeria">
       
       <div className={styles.titleRow}>
         <div>
           <h2 className={styles.title}>
-            Nuestras <em>invitaciones de Boda</em>
+            Nuestras <em>invitaciones de XV</em>
           </h2>
         </div>
 

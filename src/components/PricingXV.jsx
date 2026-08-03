@@ -4,81 +4,43 @@ import styles from "./Pricing.module.css";
 
 const plans = [
   {
-    id: "basico",
-    tag: "Esencial",
-    name: "Básico",
-    price: 300,
+    id: "XV Digital",
+    name: "XV Digital",
+    price: 550,
     featured: false,
     features: [
       { text: "Invitación digital lista para enviar por WhatsApp", active: true },
-      { text: "Personalización foto de portada", active: true },
-      { text: "Información de los padres", active: true },
+      { text: "Musíca Personalizada", active: true },
+      { text: "Portada Personalizada", active: true },
+      { text: "Cuenta Regresiva", active: true },
       { text: "Información del evento: fecha, hora y ubicación por Google Maps", active: true },
-      { text: "Código de vestimenta", active: true },
       { text: "Itinerario", active: true },
+      { text: "Codigo de Vestimenta", active: true },
+      { text: "Galeria de Fotos", active: true },
+      { text: "Mesa de regalos, Cuenta de deposito o lluvia de sobres", active: true },
       { text: "Confirmación de asistencia por excel", active: true },
     ],
   },
   {
-    id: "elegance",
-    tag: "Completo",
-    name: "Completo",
-    price: 550,
+    id: "XV Premium",
+    name: "XV Premium",
+    price: 800,
     featured: true,
     badge: "Más popular",
     features: [
       { text: "Invitación digital lista para enviar por WhatsApp", active: true },
+      { text: "Sobre de invitacion personalizado con numero de pases", active: true },
       { text: "Musica Personalizada", active: true },
-      { text: "Imágenes personalizadas y diseño", active: true },
-      { text: "Cuenta regresiva", active: true },
+      { text: "Cuenta Regresiva", active: true },
+      { text: "Frase de la Quinceañera", active: true },
       { text: "Información del evento: fecha, hora y ubicación por Google Maps", active: true },
       { text: "Detalles del evento: código de vestimenta", active: true },
-      { text: "Carrusel de fotos", active: true },
-      { text: "Mesa de regalos o cuenta para depósito", active: true },
+      { text: "Galeria de fotos", active: true },
+      { text: "Itinerario", active: true },
+      { text: "Álbum compartido", active: true },
+      { text: "Mesa de regalos, cuenta para depósito o lluvia de sobres", active: true },
       { text: "Confirmación por WhatsApp y lista de Excel", active: true },
-    ],
-  },
-  {
-    id: "premium",
-    tag: "Premium",
-    name: "Premium",
-    price: 800,
-    featured: false,
-    features: [
-      { text: "Invitación digital lista para enviar por WhatsApp", active: true },
-      { text: "Música personalizada", active: true },
-      { text: "Imágenes personalizadas y diseño", active: true },
-      { text: "Cuenta regresiva", active: true },
-      { text: "Información del evento: fecha, hora y ubicación por Google Maps", active: true },
-      { text: "Carrusel de fotos", active: true },
-      { text: "Itinerario del evento", active: true },
-      { text: "Detalles del evento: código de vestimenta", active: true },
-      { text: "Álbum compartido Wedshoots", active: true },
-      { text: "Encuesta de cuánto conocen a los novios con ranking", active: true },
-      { text: "Mesa de regalos o cuenta depósito", active: true },
-      { text: "Confirmación de asistencia personalizada", active: true },
-    ],
-  },
-  {
-    id: "luxe",
-    tag: "Luxe",
-    name: "Luxe",
-    price: 1000,
-    featured: false,
-    features: [
-      { text: "Invitación digital personalizada con número de pases", active: true },
-      { text: "Portada con sobre interactivo", active: true },
-      { text: "Invitación con música personalizada", active: true },
-      { text: "Imágenes personalizadas y diseño", active: true },
-      { text: "Cuenta regresiva", active: true },
-      { text: "Información del evento: fecha, hora y ubicación por Google Maps", active: true },
-      { text: "Carrusel de fotos", active: true },
-      { text: "Itinerario del evento", active: true },
-      { text: "Detalles del evento: código de vestimenta", active: true },
-      { text: "Álbum compartido Wedshoots", active: true },
-      { text: "Mesa de regalos o cuenta depósito", active: true },
-      { text: "Confirmación de asistencia personalizada", active: true },
-      { text: "Generador de Invitaciones", active: true },
+      { text: "Generador de invitaciones", active: true },
     ],
   },
 ];
@@ -87,15 +49,11 @@ const getPlanPrice = (plan) => {
   return typeof plan.price === "object" ? plan.price.discount : plan.price;
 };
 
-export default function Pricing({ selectedPlan, setSelectedPlan }) {
+export default function PricingXV({ selectedPlan, setSelectedPlan }) {
   return (
     <section className={styles.section} id="precios">
       <div className={styles.titleCenter}>
-        <span className={styles.label}>Planes para Boda</span>
-
-        <h2 className={styles.title}>
-          Elige tu <em>experiencia</em>
-        </h2>
+        <span className={styles.label}>Planes para XV años</span>
       </div>
 
       <div className={styles.grid}>
@@ -128,8 +86,6 @@ export default function Pricing({ selectedPlan, setSelectedPlan }) {
                   Seleccionado
                 </div>
               )}
-
-              <span className={styles.planTag}>{plan.tag}</span>
 
               <p className={styles.planName}>{plan.name}</p>
 
@@ -181,7 +137,6 @@ export default function Pricing({ selectedPlan, setSelectedPlan }) {
     setSelectedPlan({
       id: plan.id,
       name: plan.name,
-      tag: plan.tag,
       price: getPlanPrice(plan),
     });
 

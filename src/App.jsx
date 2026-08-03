@@ -8,6 +8,8 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Extras from "./components/Extras";
+import PricingXV from "./components/PricingXV";
+import GalleryXV from "./components/GalleryXV";
 
 function App() {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -18,8 +20,14 @@ function App() {
       <Navbar />
       <Hero />
       <Gallery />
+      <GalleryXV/>
 
       <Pricing
+        selectedPlan={selectedPlan}
+        setSelectedPlan={setSelectedPlan}
+      />
+
+      <PricingXV
         selectedPlan={selectedPlan}
         setSelectedPlan={setSelectedPlan}
       />
