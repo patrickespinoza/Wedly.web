@@ -106,9 +106,8 @@ export default function Pricing({
             className={styles.title}
             id="pricing-title"
           >
-            Una experiencia
-            <br />
-            <em>para cada historia.</em>
+            Precios
+            
           </h2>
 
           <p className={styles.subtitle}>

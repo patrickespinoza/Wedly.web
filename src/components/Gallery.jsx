@@ -319,9 +319,7 @@ export default function Gallery() {
             className={styles.title}
             id="titulo-galeria"
           >
-            Diseños que
-            <br />
-            <em>enamoran.</em>
+            Ejemplos
           </h2>
 
           <p className={styles.subtitle}>
