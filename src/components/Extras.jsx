@@ -259,9 +259,7 @@ export default function Extras({
           </div>
 
           <h2 className={styles.title}>
-            Los detalles hacen
-            <br />
-            <em>la diferencia.</em>
+            Extras
           </h2>
 
           <p className={styles.subtitle}>
