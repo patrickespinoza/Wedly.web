@@ -296,110 +296,121 @@ export default function Pricing({
             );
           })}
         </div>
-      
-{/* INFORMACIÓN INFERIOR */}
-<div className={styles.bottomInfo}>
-  <span
-    className={styles.bottomOrnament}
-    aria-hidden="true"
-  >
-    ✧
-  </span>
 
-  <p>
-    Todos nuestros paquetes incluyen diseño personalizado.
-    Cada paquete superior incorpora todas las funciones
-    de los anteriores.
-  </p>
+        {/* INFORMACIÓN INFERIOR */}
+        <div
+          className={styles.bottomInfo}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+            gap: "16px",
+            textAlign: "center",
+          }}
+        >
+          <span
+            className={styles.bottomOrnament}
+            aria-hidden="true"
+          >
+            ✧
+          </span>
 
-  {/* BENEFICIO DE DISPONIBILIDAD */}
-  <div
-    style={{
-      margin: "28px auto 0",
-      maxWidth: "650px",
-      padding: "26px 24px",
-      backgroundColor: "#F0E9DC",
-      border: "1px solid #C6AD83",
-      borderLeft: "3px solid #A88A5B",
-      textAlign: "center",
-    }}
-  >
-    <div
-      style={{
-        fontSize: "23px",
-        color: "#A88A5B",
-        marginBottom: "12px",
-      }}
-      aria-hidden="true"
-    >
-      ✧
-    </div>
+          <p>
+            Todos nuestros paquetes incluyen diseño personalizado.
+            Cada paquete superior incorpora todas las funciones
+            de los anteriores.
+          </p>
 
-    <h3
-      style={{
-        fontFamily: "Georgia, serif",
-        fontSize: "clamp(19px, 3vw, 25px)",
-        fontWeight: "400",
-        color: "#292522",
-        lineHeight: "1.4",
-        marginBottom: "14px",
-      }}
-    >
-      Tu invitación, disponible para cada momento
-    </h3>
+          {/* BENEFICIO DE DISPONIBILIDAD */}
+          <div
+            style={{
+              margin: "28px auto 0",
+              width: "100%",
+              maxWidth: "650px",
+              boxSizing: "border-box",
+              padding: "26px 24px",
+              backgroundColor: "#F0E9DC",
+              border: "1px solid #C6AD83",
+              borderLeft: "3px solid #A88A5B",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "23px",
+                color: "#A88A5B",
+                marginBottom: "12px",
+              }}
+              aria-hidden="true"
+            >
+              ✧
+            </div>
 
-    <p
-      style={{
-        fontSize: "14px",
-        lineHeight: "1.9",
-        color: "#625B52",
-        margin: 0,
-      }}
-    >
-      Tu invitación estará disponible desde el momento
-      de su entrega y permanecerá activa
-      <strong
-        style={{
-          color: "#8B6D42",
-          fontWeight: "600",
-        }}
-      >
-        {" "}hasta 30 días después de tu evento
-      </strong>
-      , para que puedas compartirla con tus invitados
-      y seguir disfrutándola después de tu celebración.
-    </p>
+            <h3
+              style={{
+                fontFamily: "Georgia, serif",
+                fontSize: "clamp(19px, 3vw, 25px)",
+                fontWeight: "400",
+                color: "#292522",
+                lineHeight: "1.4",
+                marginBottom: "14px",
+              }}
+            >
+              Tu invitación, disponible para cada momento
+            </h3>
 
-    <div
-      style={{
-        width: "55px",
-        height: "1px",
-        backgroundColor: "#B89B5E",
-        margin: "20px auto 14px",
-      }}
-    />
+            <p
+              style={{
+                fontSize: "14px",
+                lineHeight: "1.9",
+                color: "#625B52",
+                margin: 0,
+              }}
+            >
+              Tu invitación estará disponible desde el momento
+              de su entrega y permanecerá activa
+              <strong
+                style={{
+                  color: "#8B6D42",
+                  fontWeight: "600",
+                }}
+              >
+                {" "}hasta 30 días después de tu evento
+              </strong>
+              , para que puedas compartirla con tus invitados
+              y seguir disfrutándola después de tu celebración.
+            </p>
 
-    <span
-      style={{
-        fontSize: "10px",
-        letterSpacing: "0.15em",
-        textTransform: "uppercase",
-        fontWeight: "600",
-        color: "#927449",
-      }}
-    >
-      Incluido en todos nuestros paquetes
-    </span>
-  </div>
+            <div
+              style={{
+                width: "55px",
+                height: "1px",
+                backgroundColor: "#B89B5E",
+                margin: "20px auto 14px",
+              }}
+            />
 
-  <span
-    className={styles.bottomOrnament}
-    aria-hidden="true"
-  >
-    ✧
-  </span>
-</div>
+            <span
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                fontWeight: "600",
+                color: "#927449",
+              }}
+            >
+              Incluido en todos nuestros paquetes
+            </span>
+          </div>
 
+          <span
+            className={styles.bottomOrnament}
+            aria-hidden="true"
+          >
+            ✧
+          </span>
+        </div>
       </div>
     </section>
   );
