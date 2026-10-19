@@ -259,7 +259,7 @@ export default function Extras({
           </div>
 
           <h2 className={styles.title}>
-            Extras
+            <em>Extras</em>
           </h2>
 
           <p className={styles.subtitle}>
