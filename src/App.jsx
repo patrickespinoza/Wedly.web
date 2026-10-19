@@ -52,7 +52,6 @@ export default function App() {
         {/* GALERÍA DE BODAS */}
         <Gallery />
 
-        <RealInvitations />
 
         {/* PAQUETES */}
         <Pricing
@@ -70,12 +69,9 @@ export default function App() {
           setSelectedExtras={setSelectedExtras}
         />
 
-        {/* CONTACTO */}
-        <Contact
-          eventType={eventType}
-          selectedPlan={selectedPlan}
-          selectedExtras={selectedExtras}
-        />
+        <RealInvitations />
+
+        
       </main>
 
       <Footer />

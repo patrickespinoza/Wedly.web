@@ -1,4 +1,9 @@
 
+/* ==========================================
+   WEDLY — PRECIOS
+   TARJETAS COMPACTAS Y DESPLEGABLES
+========================================== */
+
 .section {
   --ivory: #f8f6f1;
   --ink: #292723;
@@ -6,22 +11,28 @@
   --gold: #a78b60;
   --line: rgba(41, 39, 35, 0.14);
 
+  width: 100%;
+  padding: 95px 24px 90px;
+
   background: var(--ivory);
   color: var(--ink);
-  padding: 115px 24px 105px;
+
   scroll-margin-top: 90px;
 }
 
 .container {
   width: 100%;
-  max-width: 1540px;
+  max-width: 1450px;
   margin: 0 auto;
 }
 
-/* ENCABEZADO */
+/* ==========================================
+   ENCABEZADO
+========================================== */
+
 .header {
   max-width: 850px;
-  margin: 0 auto 65px;
+  margin: 0 auto 48px;
   text-align: center;
 }
 
@@ -29,85 +40,129 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 25px;
+  gap: 14px;
+
+  margin-bottom: 20px;
 
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.23em;
-  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #8c704a;
 }
 
 .eyebrowLine {
-  width: 34px;
+  width: 30px;
   height: 1px;
   background: var(--gold);
-  opacity: 0.6;
 }
 
 .title {
   margin: 0;
+
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(3rem, 5.4vw, 5.7rem);
+  font-size: clamp(3rem, 5.4vw, 5.4rem);
   font-weight: 400;
   letter-spacing: -0.045em;
-  line-height: 1.18;
+  line-height: 1.16;
   color: var(--ink);
 }
 
 .title em {
   color: var(--gold);
-  font-style: italic;
   font-weight: 400;
 }
 
 .subtitle {
-  max-width: 650px;
-  margin: 27px auto 0;
+  max-width: 520px;
+  margin: 20px auto 0;
 
   font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--muted);
 }
 
-.eventTypes {
-  margin-top: 30px;
+/* ==========================================
+   SELECTOR BODAS / XV AÑOS
+========================================== */
+
+.eventSelector {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  gap: 4px;
+
+  width: fit-content;
+  max-width: 100%;
+  margin: 27px auto 0;
+  padding: 5px;
+
+  background: #eeeae3;
+  border: 1px solid var(--line);
+}
+
+.eventButton {
+  min-width: 135px;
+  padding: 13px 24px;
+
+  border: 0;
+  background: transparent;
+  color: var(--muted);
 
   font-family: Arial, sans-serif;
   font-size: 13px;
-  letter-spacing: 0.2em;
-  color: var(--ink);
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
-.separator {
-  color: var(--gold);
+.eventButton:hover:not(.eventButtonActive) {
+  background: #e4ded4;
 }
 
-/* CUADRÍCULA */
+.eventButtonActive {
+  background: var(--ink);
+  color: #fff;
+}
+
+.eventButton:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   CUADRÍCULA DE PRECIOS
+========================================== */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(
+    4,
+    minmax(0, 1fr)
+  );
+
   gap: 18px;
-  align-items: stretch;
+  align-items: start;
 }
 
-/* TARJETAS */
+/* ==========================================
+   TARJETAS
+========================================== */
+
 .card {
   position: relative;
   min-width: 0;
+
   display: flex;
   flex-direction: column;
 
-  padding: 32px 25px 26px;
+  padding: 27px 24px 25px;
 
   background: #fffefa;
   border: 1px solid var(--line);
-  border-radius: 0;
 
   transition:
     border-color 0.3s ease,
@@ -117,8 +172,9 @@
 
 .card:hover {
   border-color: rgba(167, 139, 96, 0.65);
-  box-shadow: 0 15px 40px rgba(41, 39, 35, 0.065);
-  transform: translateY(-5px);
+  box-shadow:
+    0 12px 35px rgba(41, 39, 35, 0.055);
+  transform: translateY(-3px);
 }
 
 .featured {
@@ -130,12 +186,16 @@
   border-color: var(--gold);
   box-shadow:
     inset 0 0 0 1px var(--gold),
-    0 15px 40px rgba(41, 39, 35, 0.08);
+    0 12px 35px rgba(41, 39, 35, 0.06);
 }
 
-/* ETIQUETA SUPERIOR */
+/* ==========================================
+   ETIQUETA SUPERIOR
+========================================== */
+
 .cardTop {
-  min-height: 28px;
+  min-height: 26px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -144,20 +204,21 @@
 
 .number {
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   color: var(--muted);
 }
 
 .badge {
-  padding: 8px 10px;
+  padding: 7px 9px;
+
   background: var(--ink);
   color: #fff;
 
   font-family: Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -166,33 +227,44 @@
   background: var(--gold);
 }
 
-/* NOMBRE */
+/* ==========================================
+   NOMBRE DEL PAQUETE
+========================================== */
+
 .cardHeading {
-  margin-top: 32px;
-  min-height: 100px;
+  margin-top: 24px;
+  min-height: 90px;
 }
 
 .planName {
-  margin: 0 0 9px;
+  margin: 0 0 8px;
+
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 2.4vw, 2.7rem);
+  font-size: clamp(1.9rem, 2.4vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.035em;
+  line-height: 1.15;
+
   color: var(--ink);
 }
 
 .tagline {
   margin: 0;
+
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 17px;
+  font-size: 15px;
   font-style: italic;
-  color: #8d704b;
   line-height: 1.5;
+
+  color: #8d704b;
 }
 
-/* PRECIO */
+/* ==========================================
+   PRECIO PRINCIPAL
+========================================== */
+
 .priceBlock {
-  margin: 14px 0 25px;
+  margin: 12px 0 22px;
 }
 
 .price {
@@ -201,76 +273,153 @@
   gap: 3px;
 
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.5rem, 3vw, 3.5rem);
+  font-size: clamp(2.7rem, 3.3vw, 3.6rem);
+  font-weight: 400;
   line-height: 1.1;
+
   color: var(--ink);
 }
 
 .currency {
   align-self: flex-start;
   padding-top: 5px;
-  font-size: 0.5em;
+  font-size: 0.48em;
 }
 
 .mxn {
-  margin-left: 7px;
+  margin-left: 6px;
+
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+
   color: var(--muted);
 }
 
 .priceCaption {
-  margin: 11px 0 0;
+  margin: 9px 0 0;
+
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--muted);
 }
 
 .rule {
   height: 1px;
+  margin-bottom: 18px;
   background: var(--line);
-  margin-bottom: 25px;
 }
 
-/* DESCRIPCIÓN */
-.description {
-  min-height: 115px;
-  margin: 0 0 25px;
+/* ==========================================
+   BOTÓN VER QUÉ INCLUYE
+========================================== */
 
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--muted);
-}
+.detailsToggle {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 15px;
 
-.featuresHeading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 12px;
+
+  border: 1px solid rgba(167, 139, 96, 0.5);
+  background: transparent;
+  color: var(--ink);
 
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--ink);
+  letter-spacing: 0.035em;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.featuresHeading span:last-child {
-  color: var(--gold);
-  font-size: 22px;
+.detailsToggle:hover {
+  background: rgba(167, 139, 96, 0.09);
+  border-color: var(--gold);
+}
+
+.detailsToggleOpen {
+  background: #eee7dc;
+  border-color: var(--gold);
+}
+
+.toggleIcon {
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  width: 22px;
+  height: 22px;
+
+  color: #92754d;
+  font-size: 23px;
   font-weight: 400;
+  line-height: 1;
 }
 
-/* HERENCIA DE PAQUETES */
+/* ==========================================
+   CONTENIDO DESPLEGABLE
+========================================== */
+
+.detailsPanel {
+  padding-top: 22px;
+}
+
+.detailsPanel[hidden] {
+  display: none;
+}
+
+.detailsPanelOpen {
+  animation: wedlyReveal 0.3s ease;
+}
+
+@keyframes wedlyReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   DESCRIPCIÓN
+========================================== */
+
+.description {
+  margin: 0 0 22px;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+
+  color: var(--muted);
+}
+
+/* ==========================================
+   FUNCIONES HEREDADAS
+========================================== */
+
 .inheritedBox {
   display: flex;
   align-items: flex-start;
-  gap: 13px;
+  gap: 11px;
 
-  padding: 17px 15px;
-  margin-bottom: 25px;
+  padding: 15px 13px;
+  margin-bottom: 22px;
 
   background: #eee6d9;
   border-left: 3px solid var(--gold);
@@ -278,38 +427,38 @@
 
 .inheritedIcon {
   flex: 0 0 auto;
-  width: 29px;
-  height: 29px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+
+  width: 27px;
+  height: 27px;
 
   background: var(--gold);
   color: white;
-  font-size: 23px;
-  font-weight: 400;
+
+  font-size: 21px;
   line-height: 1;
 }
 
 .inheritedText {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
 .inheritedLabel {
   font-family: Arial, sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.1em;
   color: #806641;
 }
 
 .inheritedText strong {
   font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.6;
   color: var(--ink);
@@ -320,54 +469,78 @@
   font-weight: 800;
 }
 
-/* FUNCIONES */
-.features {
-  list-style: none;
-  margin: 0 0 28px;
-  padding: 0;
+/* ==========================================
+   FUNCIONES
+========================================== */
 
+.featuresHeading {
+  margin: 0 0 17px;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  color: var(--ink);
+}
+
+.features {
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 13px;
+
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
 }
 
 .features li {
   display: flex;
   align-items: flex-start;
-  gap: 11px;
+  gap: 10px;
 
   font-family: Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
+
   color: #45413c;
 }
 
 .featureIcon {
   flex: 0 0 auto;
-  width: 17px;
+
   color: #92754d;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.55;
 }
 
-/* NOTA */
+/* ==========================================
+   NOTA DEL PAQUETE
+========================================== */
+
 .note {
-  margin: auto 0 25px;
-  padding-top: 15px;
+  margin: 0 0 20px;
+  padding-top: 13px;
+
+  border-top: 1px solid var(--line);
 
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-style: italic;
   line-height: 1.7;
+
   color: var(--muted);
 }
 
-/* BOTÓN */
+/* ==========================================
+   BOTÓN ELEGIR PAQUETE
+========================================== */
+
 .button {
   width: 100%;
-  min-height: 54px;
-  padding: 15px 12px;
+  min-height: 52px;
+  margin-top: 15px;
+  padding: 14px 12px;
 
   display: flex;
   justify-content: center;
@@ -375,12 +548,11 @@
   gap: 10px;
 
   background: var(--ink);
-  color: white;
+  color: #fff;
   border: 1px solid var(--ink);
-  border-radius: 0;
 
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.055em;
   text-transform: uppercase;
@@ -388,9 +560,8 @@
   cursor: pointer;
 
   transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
+    background 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .button span {
@@ -418,25 +589,31 @@
   border-color: var(--ink);
 }
 
-/* TEXTO INFERIOR */
-.bottomInfo {
-  max-width: 800px;
-  margin: 55px auto 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-
-  text-align: center;
+.selected .button {
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
-.bottomInfo p {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--muted);
+.detailsToggle:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   INFORMACIÓN INFERIOR
+========================================== */
+
+.bottomInfo {
+  max-width: 800px;
+  margin: 52px auto 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  text-align: center;
 }
 
 .bottomOrnament {
@@ -444,39 +621,137 @@
   font-size: 22px;
 }
 
-/* TABLET */
+.bottomText {
+  max-width: 680px;
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.85;
+
+  color: var(--muted);
+}
+
+.bottomText strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ==========================================
+   DISPONIBILIDAD DE LA INVITACIÓN
+========================================== */
+
+.availabilityBox {
+  width: 100%;
+  max-width: 650px;
+  box-sizing: border-box;
+
+  margin: 20px auto 0;
+  padding: 26px 24px;
+
+  background: #f0e9dc;
+  border: 1px solid #c6ad83;
+  border-left: 3px solid #a88a5b;
+
+  text-align: center;
+}
+
+.availabilityIcon {
+  display: block;
+  margin-bottom: 12px;
+
+  color: #a88a5b;
+  font-size: 23px;
+}
+
+.availabilityTitle {
+  margin: 0 0 14px;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(19px, 3vw, 25px);
+  font-weight: 400;
+  line-height: 1.4;
+
+  color: #292522;
+}
+
+.availabilityText {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.85;
+
+  color: #625b52;
+}
+
+.availabilityText strong {
+  color: #8b6d42;
+  font-weight: 700;
+}
+
+.availabilityRule {
+  width: 55px;
+  height: 1px;
+
+  margin: 20px auto 14px;
+
+  background: #b89b5e;
+}
+
+.availabilityCaption {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+
+  color: #927449;
+}
+
+/* ==========================================
+   TABLETS
+========================================== */
+
 @media (max-width: 1250px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 940px;
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+    max-width: 850px;
     margin: 0 auto;
-    gap: 22px;
+    gap: 18px;
   }
 
   .card {
-    padding: 35px;
+    padding: 28px;
   }
 
-  .cardHeading,
-  .description {
-    min-height: 0;
+  .cardHeading {
+    min-height: 80px;
   }
 }
 
-/* CELULARES */
+/* ==========================================
+   CELULARES
+========================================== */
+
 @media (max-width: 650px) {
   .section {
-    padding: 85px 16px 80px;
+    padding: 60px 16px 60px;
   }
 
   .header {
-    margin-bottom: 45px;
+    margin-bottom: 30px;
   }
 
   .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.12em;
     gap: 10px;
+    margin-bottom: 14px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
   }
 
   .eyebrowLine {
@@ -484,141 +759,203 @@
   }
 
   .title {
-    font-size: clamp(2.5rem, 10vw, 3.7rem);
+    font-size: clamp(
+      2.5rem,
+      10vw,
+      3.4rem
+    );
   }
 
   .subtitle {
-    font-size: 16px;
-    line-height: 1.8;
+    max-width: 310px;
+    margin-top: 13px;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
-  .eventTypes {
+  /* SELECTOR */
+
+  .eventSelector {
+    width: 100%;
+    max-width: 340px;
+    margin-top: 22px;
+  }
+
+  .eventButton {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
     font-size: 12px;
   }
 
+  /* TARJETAS */
+
   .grid {
     grid-template-columns: 1fr;
-    max-width: 460px;
-    gap: 20px;
+    max-width: 440px;
+    gap: 14px;
   }
 
   .card {
-    padding: 30px 23px 26px;
+    padding: 23px 21px 21px;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .cardTop {
+    min-height: 24px;
+  }
+
+  .number {
+    font-size: 10px;
+  }
+
+  .badge {
+    padding: 6px 8px;
+    font-size: 9px;
   }
 
   .cardHeading {
-    margin-top: 26px;
+    min-height: 0;
+    margin-top: 17px;
   }
 
   .planName {
-    font-size: 2.5rem;
+    margin-bottom: 5px;
+    font-size: 2.3rem;
   }
 
   .tagline {
-    font-size: 18px;
+    font-size: 14px;
+  }
+
+  /* PRECIO */
+
+  .priceBlock {
+    margin: 14px 0 18px;
   }
 
   .price {
-    font-size: 3.1rem;
+    font-size: 3rem;
+  }
+
+  .priceCaption {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .rule {
+    margin-bottom: 14px;
+  }
+
+  /* DESPLEGABLE */
+
+  .detailsToggle {
+    min-height: 46px;
+    padding: 11px 13px;
+    font-size: 12px;
+  }
+
+  .detailsPanel {
+    padding-top: 18px;
   }
 
   .description {
-    font-size: 16px;
-    margin-bottom: 24px;
-  }
-
-  .features li {
-    font-size: 16px;
-  }
-
-  .inheritedText strong {
-    font-size: 16px;
-  }
-
-  .note {
-    font-size: 14px;
-  }
-
-  .button {
+    margin-bottom: 18px;
     font-size: 13px;
   }
 
-  .bottomInfo {
-    margin-top: 42px;
-    gap: 10px;
+  .features li {
+    font-size: 13px;
   }
 
-  .bottomInfo p {
-    font-size: 14px;
+  .inheritedText strong {
+    font-size: 13px;
+  }
+
+  /* BOTÓN */
+
+  .button {
+    min-height: 49px;
+    margin-top: 12px;
+    font-size: 11px;
+  }
+
+  /* INFORMACIÓN INFERIOR */
+
+  .bottomInfo {
+    margin-top: 35px;
+    gap: 12px;
+  }
+
+  .bottomText {
+    max-width: 330px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .availabilityBox {
+    margin-top: 13px;
+    padding: 22px 17px;
+  }
+
+  .availabilityTitle {
+    font-size: 21px;
+  }
+
+  .availabilityText {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .availabilityCaption {
+    font-size: 9px;
+    letter-spacing: 0.1em;
   }
 }
 
+/* ==========================================
+   CELULARES PEQUEÑOS
+========================================== */
+
+@media (max-width: 360px) {
+  .section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .card {
+    padding: 20px 17px;
+  }
+
+  .planName {
+    font-size: 2.1rem;
+  }
+
+  .price {
+    font-size: 2.7rem;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
 @media (prefers-reduced-motion: reduce) {
   .card,
-  .button {
+  .button,
+  .detailsToggle,
+  .eventButton {
     transition: none;
   }
 
   .card:hover {
     transform: none;
   }
-}
 
-
-/* ========================================
-   SELECTOR DE BODAS Y XV AÑOS
-======================================== */
-
-.eventSelector {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  width: fit-content;
-  max-width: 100%;
-  margin: 32px auto 0;
-  padding: 4px;
-  border: 1px solid #a78b60;
-  background: #f8f6f1;
-}
-
-.eventButton {
-  border: 0;
-  background: transparent;
-  color: #292723;
-  padding: 14px 30px;
-  min-width: 135px;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.3;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.eventButton:hover:not(.eventButtonActive) {
-  background: #eae5dc;
-}
-
-.eventButtonActive {
-  background: #292723;
-  color: #ffffff;
-}
-
-.eventButton:focus-visible {
-  outline: 2px solid #a78b60;
-  outline-offset: 2px;
-}
-
-@media (max-width: 480px) {
-  .eventSelector {
-    width: 100%;
-  }
-
-  .eventButton {
-    flex: 1;
-    min-width: 0;
-    padding: 13px 16px;
-    font-size: 14px;
+  .detailsPanelOpen {
+    animation: none;
   }
 }

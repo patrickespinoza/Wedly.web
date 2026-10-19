@@ -1,8 +1,7 @@
 
 /* ==========================================
-   WEDLY — GALERÍA DE INVITACIONES
-   BODAS Y XV AÑOS
-   ESTILO EDITORIAL ELEGANTE
+   WEDLY — GALERÍA CINEMATOGRÁFICA
+   SIN BOTONES NI INDICADORES
 ========================================== */
 
 .section {
@@ -10,13 +9,13 @@
   --ink: #292723;
   --muted: #68625b;
   --gold: #a78b60;
-  --gold-dark: #806641;
   --line: rgba(41, 39, 35, 0.14);
 
   width: 100%;
-  padding: 110px 24px;
+  padding: 100px 24px;
   background: var(--ivory);
   color: var(--ink);
+  overflow: hidden;
   scroll-margin-top: 90px;
 }
 
@@ -27,43 +26,30 @@
 }
 
 /* ==========================================
-   ENCABEZADO PRINCIPAL
+   ENCABEZADO
 ========================================== */
 
 .header {
-  max-width: 800px;
-  margin: 0 auto 65px;
   text-align: center;
+  margin-bottom: 45px;
 }
 
 .eyebrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 28px;
-
+  display: block;
+  margin-bottom: 18px;
   color: #8c704a;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-}
-
-.line {
-  width: 30px;
-  height: 1px;
-  flex-shrink: 0;
-  background: var(--gold);
+  letter-spacing: 0.24em;
 }
 
 .title {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(3rem, 5.5vw, 5.3rem);
+  font-size: clamp(3rem, 5vw, 5rem);
   font-weight: 400;
+  line-height: 1.12;
   letter-spacing: -0.045em;
-  line-height: 1.16;
-  color: var(--ink);
 }
 
 .title em {
@@ -72,11 +58,11 @@
 }
 
 .subtitle {
-  max-width: 620px;
-  margin: 26px auto 0;
+  margin: 18px auto 0;
+  max-width: 480px;
   color: var(--muted);
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 /* ==========================================
@@ -85,47 +71,32 @@
 
 .eventSelector {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   gap: 5px;
-
-  margin-top: 38px;
+  margin-top: 28px;
   padding: 5px;
-
   background: #eeeae3;
   border: 1px solid var(--line);
 }
 
 .eventButton {
   min-width: 140px;
-  padding: 14px 25px;
-
-  border: 1px solid transparent;
-  border-radius: 0;
+  padding: 13px 22px;
+  border: 0;
   background: transparent;
-
   color: var(--muted);
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-
   cursor: pointer;
 
   transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.eventButton:hover {
-  color: var(--ink);
-}
-
-.eventButtonActive,
-.eventButtonActive:hover {
+.eventButtonActive {
   background: var(--ink);
-  color: #ffffff;
+  color: white;
 }
 
 .eventButton:focus-visible {
@@ -134,117 +105,64 @@
 }
 
 /* ==========================================
-   ENCABEZADO DE COLECCIÓN
+   CARRUSEL
 ========================================== */
 
-.collectionHeader {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-
-  margin-bottom: 28px;
-  padding-bottom: 22px;
-
-  border-bottom: 1px solid var(--line);
-}
-
-.collectionLabel {
-  display: block;
-  margin-bottom: 10px;
-
-  color: #8c704a;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-/* TÍTULOS GRANDES DE BODA Y XV AÑOS */
-
-.collectionTitle {
-  margin: 0;
-
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 1.2;
-  color: var(--ink);
-}
-
-.collectionCount {
-  margin: 0;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
-}
-
-/* ==========================================
-   GRID — 4 TARJETAS
-========================================== */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 22px;
-
+.carouselArea {
   width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+.carousel {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 /* ==========================================
    TARJETAS
 ========================================== */
 
-.card {
+.slide {
   position: relative;
+  display: block;
 
-  display: flex;
-  flex-direction: column;
-
+  flex: 0 0 calc((100% - 36px) / 3);
   min-width: 0;
-  height: 100%;
-  overflow: hidden;
 
-  background: #fffefa;
-  border: 1px solid var(--line);
-  border-radius: 0;
-
-  color: inherit;
+  color: white;
   text-decoration: none;
 
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+  scroll-snap-align: start;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(167, 139, 96, 0.65);
-  box-shadow: 0 15px 35px rgba(41, 39, 35, 0.07);
-}
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 5;
 
-.card:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
+  overflow: hidden;
+  background: #e6dfd5;
 }
 
 /* ==========================================
-   CONTENEDOR DE IMAGEN
+   IMAGEN PRINCIPAL
 ========================================== */
-
-.cardImg {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 14;
-
-  overflow: hidden;
-  background: #e8e1d7;
-}
 
 .image {
   display: block;
@@ -252,217 +170,100 @@
   height: 100%;
 
   object-fit: cover;
-  object-position: center 43%;
+  object-position: center;
 
-  transition: transform 0.6s ease;
+  transition: transform 1.4s ease;
 }
 
-.card:hover .image {
-  transform: scale(1.045);
-}
-
-/* ETIQUETA SUPERIOR */
-
-.badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 2;
-
-  max-width: calc(100% - 32px);
-  padding: 10px 12px;
-
-  background: rgba(248, 246, 241, 0.96);
-  color: var(--ink);
-
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  line-height: 1.4;
-}
-
-/* NUMERACIÓN DE INVITACIONES */
-
-.imageNumber {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  z-index: 2;
-
-  padding: 8px 10px;
-
-  background: rgba(41, 39, 35, 0.82);
-  color: #ffffff;
-
-  font-size: 11px;
-  letter-spacing: 0.1em;
+.slide:hover .image {
+  transform: scale(1.06);
 }
 
 /* ==========================================
-   INFORMACIÓN DE TARJETA
+   AJUSTE ESPECIAL PARA PLUS
+   MUESTRA LA IMAGEN COMPLETA
 ========================================== */
 
-.cardInfo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  padding: 25px 22px 18px;
-  flex: 1;
+.imagePlus {
+  object-fit: contain;
+  object-position: center;
 }
 
-.cardTextGroup {
-  min-width: 0;
-}
-
-.cardEyebrow {
-  display: block;
-  margin-bottom: 9px;
-
-  color: #8c704a;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-}
-
-.cardTitle {
-  margin: 0 0 9px;
-
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.5rem, 2vw, 1.9rem);
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--ink);
-}
-
-.cardText {
-  margin: 0;
-
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-/* FLECHA */
-
-.arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  width: 38px;
-  height: 38px;
-
-  border: 1px solid var(--gold);
-  border-radius: 0;
-
-  color: #8c704a;
-  font-size: 20px;
-
-  transition:
-    background 0.25s ease,
-    color 0.25s ease;
-}
-
-.card:hover .arrow {
-  background: var(--ink);
-  color: #ffffff;
-}
-
-/* ==========================================
-   ENLACE INFERIOR
-========================================== */
-
-.viewLink {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  margin: 0 22px;
-  padding: 16px 0 20px;
-
-  border-top: 1px solid var(--line);
-
-  color: var(--gold-dark);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-}
-
-.viewLink span {
-  font-size: 18px;
-  transition: transform 0.25s ease;
-}
-
-.card:hover .viewLink span {
-  transform: translateX(4px);
-}
-
-/* ==========================================
-   INVITACIONES PRÓXIMAMENTE
-   PREMIUM Y LUXE DE XV AÑOS
-========================================== */
-
-.comingSoonCard {
-  cursor: default;
-}
-
-.comingSoonCard:hover {
+/* Evita que el zoom recorte Plus al pasar el mouse */
+.slide:hover .imagePlus {
   transform: none;
-  border-color: var(--line);
-  box-shadow: none;
 }
 
-.placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+/* ==========================================
+   DEGRADADO INFERIOR
+========================================== */
 
-  width: 100%;
-  height: 100%;
-  padding: 35px 20px;
+.imageGradient {
+  position: absolute;
+  inset: 0;
 
-  background: #eae5dc;
-  color: var(--gold-dark);
-  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(15, 13, 12, 0.25) 70%,
+    rgba(15, 13, 12, 0.82) 100%
+  );
+
+  pointer-events: none;
 }
 
-.placeholderLine {
-  width: 45px;
-  height: 1px;
-  background: var(--gold);
+/* ==========================================
+   TEXTO SOBRE IMAGEN
+========================================== */
+
+.slideContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  padding: 25px;
+  color: white;
 }
 
-.placeholderInitial {
+.slideCategory {
+  display: block;
+  margin-bottom: 5px;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  opacity: 0.85;
+}
+
+.slideTitle {
+  margin: 0 0 12px;
+
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(4rem, 7vw, 6rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
-  letter-spacing: -0.06em;
   line-height: 1;
-  color: var(--gold);
 }
 
-.placeholderTitle {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 29px;
-  font-weight: 400;
-  color: var(--ink);
+.slideLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid rgba(
+    255, 255, 255, 0.5
+  );
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
 }
 
-.placeholderText {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: var(--gold-dark);
-}
-
-.comingSoonCard .viewLink {
-  color: #8b857c;
+.slideLink span {
+  font-size: 17px;
 }
 
 /* ==========================================
@@ -470,57 +271,24 @@
 ========================================== */
 
 .bottomNote {
-  margin: 35px 0 0;
-
+  margin: 26px auto 0;
   text-align: center;
+
   color: var(--muted);
 
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 16px;
+  font-size: 15px;
   font-style: italic;
-}
-
-/* ==========================================
-   PANTALLAS MEDIANAS
-========================================== */
-
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cardTitle {
-    font-size: 27px;
-  }
+  line-height: 1.6;
 }
 
 /* ==========================================
    TABLETS
 ========================================== */
 
-@media (max-width: 768px) {
-  .section {
-    padding: 90px 20px;
-  }
-
-  .header {
-    margin-bottom: 50px;
-  }
-
-  .collectionHeader {
-    align-items: flex-start;
-  }
-
-  .grid {
-    gap: 18px;
-  }
-
-  .cardInfo {
-    padding: 22px 18px 16px;
-  }
-
-  .viewLink {
-    margin: 0 18px;
+@media (max-width: 1000px) {
+  .slide {
+    flex-basis: calc((100% - 18px) / 2);
   }
 }
 
@@ -530,126 +298,112 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 80px 16px;
+    padding: 60px 16px 55px;
   }
 
   .header {
-    margin-bottom: 45px;
+    margin-bottom: 28px;
   }
 
   .eyebrow {
-    gap: 9px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-  }
-
-  .line {
-    width: 20px;
+    margin-bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
   }
 
   .title {
-    font-size: clamp(2.7rem, 10vw, 3.8rem);
+    font-size: clamp(2.5rem, 10vw, 3.3rem);
   }
 
   .subtitle {
-    font-size: 15px;
-    line-height: 1.8;
+    margin-top: 12px;
+    max-width: 300px;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
-  /* SELECTOR RESPONSIVE */
+  /* SELECTOR */
 
   .eventSelector {
     display: flex;
     width: 100%;
-    max-width: 360px;
-    margin: 32px auto 0;
+    max-width: 340px;
+    margin: 22px auto 0;
   }
 
   .eventButton {
     flex: 1;
     min-width: 0;
-    padding: 14px 12px;
-    font-size: 13px;
+    padding: 12px;
+    font-size: 12px;
   }
 
-  /* ENCABEZADO DE COLECCIÓN */
+  /* CARRUSEL */
 
-  .collectionHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 25px;
+  .carouselArea {
+    max-width: 430px;
   }
 
-  .collectionTitle {
-    font-size: clamp(2.5rem, 9vw, 3.4rem);
-    line-height: 1.2;
+  .carousel {
+    gap: 0;
+    scroll-snap-type: x mandatory;
   }
 
-  .collectionCount {
-    font-size: 11px;
+  .slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
   }
 
-  /* GRID MÓVIL */
+  /* IMÁGENES MÁS ALTAS */
 
-  .grid {
-    grid-template-columns: 1fr;
-    max-width: 460px;
-    gap: 24px;
-    margin: 0 auto;
+  .imageWrapper {
+    aspect-ratio: 3 / 5;
   }
 
-  /* TARJETAS */
-
-  .cardImg {
-    aspect-ratio: 9 / 13;
+  .image {
+    object-fit: cover;
+    object-position: center;
   }
 
-  .cardInfo {
-    padding: 24px 20px 17px;
+  /* PLUS SIN RECORTES */
+
+  .imagePlus {
+    object-fit: contain;
+    object-position: center;
   }
 
-  .cardTitle {
-    font-size: 27px;
+  /* TEXTO MÍNIMO */
+
+  .slideContent {
+    padding: 20px;
   }
 
-  .cardText {
-    font-size: 14px;
+  .slideCategory {
+    font-size: 9px;
   }
 
-  .badge {
-    top: 14px;
-    left: 14px;
+  .slideTitle {
+    margin-bottom: 10px;
+    font-size: 36px;
   }
 
-  .viewLink {
-    margin: 0 20px;
+  .slideLink {
+    font-size: 10px;
   }
 
-  /* PRÓXIMAMENTE */
-
-  .placeholder {
-    min-height: 300px;
-  }
-
-  .placeholderInitial {
-    font-size: 70px;
-  }
-
-  .placeholderTitle {
-    font-size: 30px;
-  }
-
-  /* NOTA INFERIOR */
+  /* NOTA */
 
   .bottomNote {
-    font-size: 15px;
-    line-height: 1.6;
+    max-width: 300px;
+    margin-top: 23px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 
 /* ==========================================
-   PANTALLAS MUY PEQUEÑAS
+   CELULARES PEQUEÑOS
 ========================================== */
 
 @media (max-width: 360px) {
@@ -658,22 +412,12 @@
     padding-right: 12px;
   }
 
-  .eventButton {
-    padding: 12px 8px;
-    font-size: 12px;
+  .slideContent {
+    padding: 16px;
   }
 
-  .cardInfo {
-    padding: 20px 16px;
-  }
-
-  .cardTitle {
-    font-size: 25px;
-  }
-
-  .viewLink {
-    margin: 0 16px;
-    font-size: 10px;
+  .slideTitle {
+    font-size: 31px;
   }
 }
 
@@ -682,23 +426,16 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .card,
+  .carousel {
+    scroll-behavior: auto;
+  }
+
   .image,
-  .arrow,
-  .viewLink span,
   .eventButton {
     transition: none;
   }
 
-  .card:hover {
-    transform: none;
-  }
-
-  .card:hover .image {
-    transform: none;
-  }
-
-  .card:hover .viewLink span {
+  .slide:hover .image {
     transform: none;
   }
 }
