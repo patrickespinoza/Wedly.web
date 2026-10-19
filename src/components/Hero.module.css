@@ -1,217 +1,396 @@
-/* HERO */
+
 .hero {
-  min-height: 100vh;
-  background: #f8f5ef;
+  --ivory: #f8f6f1;
+  --ink: #292723;
+  --muted: #77716a;
+  --gold: #a78b60;
+
+  min-height: 100svh;
+  background: var(--ivory);
+  color: var(--ink);
+  position: relative;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 8rem 2rem 6rem;
-  position: relative;
+
+  padding: 115px 6% 35px;
   overflow: hidden;
+  isolation: isolate;
 }
 
-/* ORNAMENTO */
-.ornament {
+.hero::before,
+.hero::after {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 620px;
-  height: 620px;
-  transform: translate(-50%, -50%);
-  border: 1px solid rgba(184, 155, 94, 0.18);
-  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(41, 39, 35, 0.055);
   pointer-events: none;
 }
 
-.ornament::after {
-  content: "";
-  position: absolute;
-  inset: 12%;
-  border: 1px solid rgba(184, 155, 94, 0.1);
-  border-radius: 50%;
+.hero::before {
+  left: 5%;
 }
 
-/* TAG */
-.tag {
-  font-size: 0.85rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: #b89b5e;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 2;
+.hero::after {
+  right: 5%;
 }
 
-/* TITULO */
-.heading {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(4rem, 9vw, 7.8rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: 0.03em;
-  margin-bottom: 1.5rem;
-  color: #5e6650;
-  position: relative;
-  z-index: 2;
-}
-
-.heading em {
-  font-style: italic;
-  color: #b89b5e;
-}
-
-/* SUBTEXTO */
-.sub {
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  color: rgba(94, 102, 80, 0.78);
-  max-width: 520px;
-  line-height: 1.9;
-  margin-bottom: 3rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* DIVIDER */
-.divider {
+.topLine,
+.bottom {
+  width: 100%;
+  max-width: 1450px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  justify-content: space-between;
+  gap: 20px;
   position: relative;
   z-index: 2;
 }
 
-.divider span {
-  width: 65px;
-  height: 1px;
-  background: #b89b5e;
-  opacity: 0.7;
+.topLine {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(41, 39, 35, 0.14);
 }
 
-.divider i {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-size: 1.3rem;
-  color: #b89b5e;
+.topLine span,
+.bottom > span,
+.scrollButton {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--muted);
 }
 
-/* BOTONES */
-.btns {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-
-.btnPrimary,
-.btnOutline {
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 1rem 2.8rem;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-/* BOTON PRINCIPAL */
-.btnPrimary {
-  background: #5e6650;
-  color: #ffffff;
-  border: 1px solid #5e6650;
-}
-
-.btnPrimary:hover {
-  background: #b89b5e;
-  border-color: #b89b5e;
-  color: #ffffff;
-}
-
-/* BOTON SECUNDARIO */
-.btnOutline {
-  background: transparent;
-  color: #5e6650;
-  border: 1px solid rgba(184, 155, 94, 0.7);
-}
-
-.btnOutline:hover {
-  background: #b89b5e;
-  color: #ffffff;
-  border-color: #b89b5e;
-}
-
-/* SCROLL */
-.scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+.content {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  padding: 65px 0;
+  position: relative;
+  z-index: 2;
 }
 
-.scroll span {
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  margin-bottom: 32px;
+}
+
+.eyebrow span:not(.line) {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+}
+
+.line {
+  width: 35px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3.4rem, 7.3vw, 7.6rem);
+  line-height: 1.13;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin: 0 0 32px;
+}
+
+.heading em {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.description {
+  max-width: 550px;
+  font-family: Arial, sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+  line-height: 1.95;
+  color: var(--muted);
+  margin: 0 0 38px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+
+.priceLabel {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+}
+
+.priceAmount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.currency {
+  font-size: 0.55em;
+}
+
+.mx {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-width: 205px;
+  min-height: 52px;
+  padding: 16px 22px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(94, 102, 80, 0.55);
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.scrollLine {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, #b89b5e, transparent);
-  animation: scrollAnim 1.8s ease-in-out infinite;
+.primaryButton {
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: #fff;
 }
 
-@keyframes scrollAnim {
-  0% {
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-
-  50% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
+.secondaryButton {
+  background: transparent;
+  border: 1px solid rgba(41, 39, 35, 0.35);
+  color: var(--ink);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+.primaryButton span,
+.secondaryButton span {
+  margin-left: 13px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.primaryButton:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.secondaryButton:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footnote {
+  margin: 42px 0 0;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  line-height: 2.2;
+  color: var(--muted);
+}
+
+.footnote span {
+  color: var(--gold);
+  margin: 0 9px;
+}
+
+.bottom {
+  padding-top: 20px;
+  border-top: 1px solid rgba(41, 39, 35, 0.14);
+}
+
+.scrollButton {
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 20px;
+  color: var(--gold);
+  transition: transform 0.3s ease;
+}
+
+.scrollButton:hover .arrow {
+  transform: translateY(5px);
+}
+
+/* Animación inicial */
+.content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.visible .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tablets */
+@media (max-width: 900px) {
   .hero {
-    padding: 7rem 1.4rem 5rem;
-  }
-
-  .ornament {
-    width: 340px;
-    height: 340px;
+    padding: 100px 6% 28px;
   }
 
   .heading {
-    font-size: 3.4rem;
+    font-size: clamp(3rem, 8vw, 5.5rem);
   }
 
-  .sub {
-    font-size: 0.92rem;
+  .bottom > span {
+    display: none;
   }
 
-  .btnPrimary,
-  .btnOutline {
+  .bottom {
+    justify-content: center;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100svh;
+    padding: 92px 24px 22px;
+  }
+
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
+
+  .topLine {
+    gap: 10px;
+    padding-bottom: 13px;
+  }
+
+  .topLine span {
+    font-size: 7px;
+    letter-spacing: 0.12em;
+  }
+
+  .content {
+    padding: 65px 0 45px;
+  }
+
+  .eyebrow {
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .eyebrow span:not(.line) {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+  }
+
+  .line {
+    width: 18px;
+  }
+
+  .heading {
+    font-size: clamp(2.8rem, 11vw, 4.5rem);
+    line-height: 1.18;
+    letter-spacing: -0.045em;
+    margin-bottom: 25px;
+  }
+
+  .description {
+    font-size: 0.87rem;
+    line-height: 1.85;
+    margin-bottom: 30px;
+  }
+
+  .price {
+    margin-bottom: 25px;
+  }
+
+  .priceAmount {
+    font-size: 2.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: 330px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footnote {
+    margin-top: 35px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .footnote span {
+    margin: 0 5px;
+  }
+
+  .bottom {
+    padding-top: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .arrow {
+    transition: none;
   }
 }

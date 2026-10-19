@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "./App.css";
 
@@ -5,43 +6,79 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
 import Pricing from "./components/Pricing";
+import Extras from "./components/Extras";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Extras from "./components/Extras";
-import PricingXV from "./components/PricingXV";
-import GalleryXV from "./components/GalleryXV";
+import RealInvitations from "./components/RealInvitations";
 
-function App() {
+export default function App() {
+  // Tipo de celebración
+  const [eventType, setEventType] = useState("boda");
+
+  // Paquete seleccionado
   const [selectedPlan, setSelectedPlan] = useState(null);
+
+  // Complementos seleccionados
   const [selectedExtras, setSelectedExtras] = useState([]);
+
+  // Cambiar entre bodas y XV años
+  const handleEventChange = (newEventType) => {
+    if (
+      newEventType !== "boda" &&
+      newEventType !== "xv"
+    ) {
+      return;
+    }
+
+    if (newEventType === eventType) {
+      return;
+    }
+
+    setEventType(newEventType);
+
+    // Reiniciar selección para evitar
+    // mezclar precios de distintas celebraciones
+    setSelectedPlan(null);
+    setSelectedExtras([]);
+  };
 
   return (
     <div className="app">
       <Navbar />
-      <Hero />
-      <Gallery />
-      <GalleryXV/>
 
-      <Pricing
-        selectedPlan={selectedPlan}
-        setSelectedPlan={setSelectedPlan}
-      />
+      <main>
+        <Hero />
 
-      <PricingXV
-        selectedPlan={selectedPlan}
-        setSelectedPlan={setSelectedPlan}
-      />
+        {/* GALERÍA DE BODAS */}
+        <Gallery />
 
-      <Extras
-        selectedPlan={selectedPlan}
-        selectedExtras={selectedExtras}
-        setSelectedExtras={setSelectedExtras}
-      />
+        <RealInvitations />
 
-      <Contact />
+        {/* PAQUETES */}
+        <Pricing
+          eventType={eventType}
+          setEventType={handleEventChange}
+          selectedPlan={selectedPlan}
+          setSelectedPlan={setSelectedPlan}
+        />
+
+        {/* COMPLEMENTOS */}
+        <Extras
+          eventType={eventType}
+          selectedPlan={selectedPlan}
+          selectedExtras={selectedExtras}
+          setSelectedExtras={setSelectedExtras}
+        />
+
+        {/* CONTACTO */}
+        <Contact
+          eventType={eventType}
+          selectedPlan={selectedPlan}
+          selectedExtras={selectedExtras}
+        />
+      </main>
+
       <Footer />
     </div>
   );
 }
-
-export default App;

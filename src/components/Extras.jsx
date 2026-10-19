@@ -1,328 +1,566 @@
-import React, { useMemo, useState } from "react";
+
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+
 import styles from "./Extras.module.css";
+
+import {
+  EXTRAS,
+  PLAN_LEVEL,
+  formatMoney,
+  isIncluded,
+  isAvailable,
+  normalizeExtras,
+} from "../data/catalog";
 
 const WHATSAPP_PHONE = "522224649120";
 
-const extras = [
-  {
-    id: "control-invitados",
-    titulo: "Control de Invitados",
-    precio: 270,
-    descripcion:
-      "Nombre personalizado, número de pases asignados y confirmación limitada para cada invitado.",
-  },
-  {
-    id: "musica",
-    titulo: "Música Personalizada",
-    precio: 50,
-    descripcion:
-      "Agrega una canción especial para acompañar la experiencia de tu invitación.",
-  },
-  {
-    id: "album",
-    titulo: "Álbum Compartido",
-    precio: 100,
-    descripcion:
-      "Tus invitados podrán subir fotografías y recuerdos del evento en un solo lugar.",
-  },
-  {
-    id: "Contador",
-    titulo: "Cuenta Regresiva",
-    precio: 60,
-    descripcion:
-      "Contador con cuenta regresiva para la fecha del evento.",
-  },
-  {
-    id: "Galeria",
-    titulo: "Galeria de fotos",
-    precio: 100,
-    descripcion:
-      "Agrega un carrusel de 5 a 6 fotos de los novios.",
-  },
-  {
-    id: "mesa-regalos",
-    titulo: "Mesa de Regalos Premium",
-    precio: 60,
-    descripcion:
-      "Diseño elegante para Liverpool, sobres de regalo o cuentas bancarias.",
-  },
-  {
-    id: "evento-adicional",
-    titulo: "Evento Adicional",
-    precio: 150,
-    descripcion:
-      "Ideal para combinar boda y bautizo, boda civil o cualquier celebración adicional.",
-  },
-  {
-    id: "Itinerario",
-    titulo: "Itinerario del Evento",
-    precio: 70,
-    descripcion:
-      "Agrega itinerario de tu Evento con fechas y hora.",
-  },
-  {
-    id: "Version impresa",
-    titulo: "Versión impresa",
-    precio: 50,
-    descripcion:
-      "Agrega imagen de tu invitacion , para recuerdo.",
-  },
-  {
-    id: "Encuesta",
-    titulo: "Encuesta de cuanto Conocen a los novios",
-    precio: 100,
-    descripcion:
-      "Agrega una encuesta de 5 preguntas para que tus invitados respondan y puedas ver quienes conocemas mas su historia.",
-  },
-    {
-    id: "Hospedaje",
-    titulo: "Recomienda ubicaciones de hospedaje para tus invitados",
-    precio: 60,
-    descripcion:
-      "Agrega 3 a 4 hoteles o lugares con ubicacion para que tus invitados puedan elegir su hospedaje.",
-  },
-      {
-    id: "Menú",
-    titulo: "Seccion de seleccion de Menu",
-    precio: 100,
-    descripcion:
-      "Agrega una seccion en confirmacion para que tus invitados eligan el Menu que prefieren.",
-  },
-];
-
 export default function Extras({
+  eventType = "boda",
   selectedPlan,
-  selectedExtras,
+  selectedExtras = [],
   setSelectedExtras,
 }) {
   const [showSummary, setShowSummary] = useState(false);
+  const modalRef = useRef(null);
+  const closeRef = useRef(null);
 
-  const toggleExtra = (extra) => {
-    const exists = selectedExtras.some((item) => item.id === extra.id);
+  const planLevel = PLAN_LEVEL[selectedPlan?.id] || 0;
 
-    if (exists) {
-      setSelectedExtras(selectedExtras.filter((item) => item.id !== extra.id));
-    } else {
-      setSelectedExtras([...selectedExtras, extra]);
-    }
-  };
+  const availableExtras = useMemo(
+    () =>
+      EXTRAS.filter(
+        (extra) =>
+          isAvailable(extra, eventType) &&
+          !isIncluded(extra, planLevel)
+      ),
+    [eventType, planLevel]
+  );
 
-  const extrasTotal = useMemo(() => {
-    return selectedExtras.reduce((total, item) => total + item.precio, 0);
-  }, [selectedExtras]);
+  const effectiveExtras = useMemo(
+    () =>
+      normalizeExtras(
+        selectedExtras,
+        planLevel,
+        eventType
+      ),
+    [selectedExtras, planLevel, eventType]
+  );
 
-  const planTotal = selectedPlan ? selectedPlan.price : 0;
+  const extrasTotal = effectiveExtras.reduce(
+    (sum, extra) => sum + extra.precio,
+    0
+  );
+
+  const planTotal = selectedPlan?.price || 0;
   const total = planTotal + extrasTotal;
 
-  const sendToWhatsApp = () => {
-    const planText = selectedPlan
-      ? `📦 Paquete:\n• ${selectedPlan.name} - $${selectedPlan.price} MXN`
-      : "📦 Paquete:\n• Aún no he seleccionado paquete";
+  useEffect(() => {
+    const normalized = normalizeExtras(
+      selectedExtras,
+      planLevel,
+      eventType
+    );
 
-    const extrasText =
-      selectedExtras.length > 0
-        ? selectedExtras
-            .map((extra) => `• ${extra.titulo} - $${extra.precio} MXN`)
-            .join("\n")
-        : "• Sin extras seleccionados";
+    const currentIds = selectedExtras
+      .map((item) => item.id)
+      .join("|");
 
-    const message = `Hola 👋
+    const normalizedIds = normalized
+      .map((item) => item.id)
+      .join("|");
 
-Quisiera cotizar mi invitación con esta selección:
+    const pricesChanged = selectedExtras.some((item) => {
+      const canonical = EXTRAS.find(
+        (extra) => extra.id === item.id
+      );
 
-${planText}
+      return (
+        !canonical ||
+        canonical.precio !== item.precio
+      );
+    });
 
-✨ Extras:
-${extrasText}
+    if (
+      currentIds !== normalizedIds ||
+      pricesChanged
+    ) {
+      setSelectedExtras(normalized);
+    }
+  }, [
+    eventType,
+    planLevel,
+    selectedExtras,
+    setSelectedExtras,
+  ]);
 
-💰 Total aproximado:
-$${total} MXN
+  useEffect(() => {
+    if (!showSummary) return;
 
-¿Podrían ayudarme con más información?`;
+    const previousOverflow =
+      document.body.style.overflow;
 
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
-      message
-    )}`;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
 
-    window.open(url, "_blank");
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowSummary(false);
+      }
+
+      if (
+        event.key === "Tab" &&
+        modalRef.current
+      ) {
+        const focusable = Array.from(
+          modalRef.current.querySelectorAll(
+            'button:not([disabled]), a[href], input:not([disabled])'
+          )
+        );
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (
+          event.shiftKey &&
+          document.activeElement === first
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === last
+        ) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+    return () => {
+      document.body.style.overflow =
+        previousOverflow;
+
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [showSummary]);
+
+  const toggleExtra = (extra) => {
+    if (!selectedPlan) return;
+
+    if (
+      !isAvailable(extra, eventType) ||
+      isIncluded(extra, planLevel)
+    ) {
+      return;
+    }
+
+    const selectedIds = new Set(
+      effectiveExtras.map((item) => item.id)
+    );
+
+    if (selectedIds.has(extra.id)) {
+      selectedIds.delete(extra.id);
+
+      if (extra.id === "control-invitados") {
+        selectedIds.delete("qr");
+      }
+    } else {
+      selectedIds.add(extra.id);
+
+      if (
+        extra.requires &&
+        planLevel < 4
+      ) {
+        selectedIds.add(extra.requires);
+      }
+    }
+
+    const nextExtras = EXTRAS.filter(
+      (item) => selectedIds.has(item.id)
+    );
+
+    setSelectedExtras(
+      normalizeExtras(
+        nextExtras,
+        planLevel,
+        eventType
+      )
+    );
   };
 
-  const hasSelection = selectedPlan || selectedExtras.length > 0;
+  const sendToWhatsApp = () => {
+    if (!selectedPlan) return;
+
+    const celebration =
+      eventType === "xv" ? "XV años" : "Boda";
+
+    const extraLines = effectiveExtras.length
+      ? effectiveExtras
+          .map(
+            (extra) =>
+              `• ${extra.titulo}: ${formatMoney(extra.precio)}`
+          )
+          .join("\n")
+      : "• Sin complementos adicionales";
+
+    const message = [
+      "Hola, equipo Wedly 👋",
+      "",
+      `Me gustaría solicitar información sobre una invitación digital para ${celebration}.`,
+      "",
+      "📦 PAQUETE",
+      `${selectedPlan.name}: ${formatMoney(selectedPlan.price)}`,
+      "",
+      "✨ COMPLEMENTOS",
+      extraLines,
+      "",
+      `💰 TOTAL ESTIMADO: ${formatMoney(total)}`,
+      "",
+      "¿Me pueden ayudar con los siguientes pasos?",
+    ].join("\n");
+
+    const url =
+      `https://wa.me/${WHATSAPP_PHONE}` +
+      `?text=${encodeURIComponent(message)}`;
+
+    window.open(
+      url,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
 
   return (
-    <section className={styles.section} id="extras">
+    <section
+      className={styles.section}
+      id="extras"
+    >
       <div className={styles.container}>
-        <div className={styles.header}>
-          <span className={styles.label}>Personaliza tu experiencia</span>
-
-          <h2 className={styles.title}>Mejora tu Invitación</h2>
-
-          <div className={styles.line}></div>
-
-          <p className={styles.subtitle}>
-            Agrega funciones exclusivas para hacer tu invitación aún más
-            especial, personalizada y memorable.
-          </p>
-        </div>
-
-        <div className={styles.grid}>
-          {extras.map((extra) => {
-            const isSelected = selectedExtras.some(
-              (item) => item.id === extra.id
-            );
-
-            return (
-              <div
-                className={`${styles.card} ${
-                  isSelected ? styles.selectedCard : ""
-                }`}
-                key={extra.id}
-              >
-                <button
-                  className={`${styles.addButton} ${
-                    isSelected ? styles.addedButton : ""
-                  }`}
-                  onClick={() => toggleExtra(extra)}
-                  aria-label={
-                    isSelected
-                      ? `Quitar ${extra.titulo}`
-                      : `Agregar ${extra.titulo}`
-                  }
-                >
-                  {isSelected ? "✓" : "+"}
-                </button>
-
-                <span className={styles.cardLabel}>
-                  {isSelected ? "Agregado" : "Extra disponible"}
-                </span>
-
-                <h3 className={styles.cardTitle}>{extra.titulo}</h3>
-
-                <p className={styles.description}>{extra.descripcion}</p>
-
-                <div className={styles.smallLine}></div>
-
-                <div className={styles.cardBottom}>
-                  <p className={styles.price}>+${extra.precio} MXN</p>
-
-                  <button
-                    className={styles.miniAction}
-                    onClick={() => toggleExtra(extra)}
-                  >
-                    {isSelected ? "Quitar" : "Agregar"}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className={styles.cartBox} id="resumen">
-          <div>
-            <span className={styles.cartLabel}>Tu selección</span>
-
-            <h3>
-              {hasSelection
-                ? `$${total} MXN`
-                : "Selecciona un paquete o extra"}
-            </h3>
-
-            <p>
-  {selectedPlan
-    ? `Elegiste el paquete ${selectedPlan.name}. ¿Te gustaría agregar algún extra?`
-    : "Selecciona un paquete o agrega extras para armar tu invitación."}
-</p>
+        <header className={styles.header}>
+          <div className={styles.eyebrow}>
+            <span className={styles.line} />
+            <span>PERSONALIZA TU EXPERIENCIA</span>
+            <span className={styles.line} />
           </div>
 
-          <div className={styles.cartActions}>
-  <button
-    className={styles.extraButton}
-    onClick={() =>
-      document.getElementById("extras")?.scrollIntoView({
-        behavior: "smooth",
-      })
-    }
-  >
-    Agregar extras
-  </button>
+          <h2 className={styles.title}>
+            Los detalles hacen
+            <br />
+            <em>la diferencia.</em>
+          </h2>
 
-  <button
-    className={styles.viewButton}
-    onClick={() => setShowSummary(true)}
-    disabled={!hasSelection}
-  >
-    Solicitar mi invitación
-  </button>
-</div>
-        </div>
+          <p className={styles.subtitle}>
+            Añade funciones especiales a tu invitación.
+            Te mostraremos únicamente los complementos
+            que no están incluidos en tu paquete.
+          </p>
 
-        {showSummary && (
+          {!selectedPlan && (
+            <div className={styles.notice}>
+              Primero elige un paquete para ver
+              los complementos disponibles.
+
+              <button
+                type="button"
+                onClick={() =>
+                  document
+                    .getElementById("precios")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                }
+              >
+                Ver paquetes →
+              </button>
+            </div>
+          )}
+        </header>
+
+        {selectedPlan && (
+          <>
+            <div className={styles.selectionInfo}>
+              <div>
+                <span className={styles.selectionLabel}>
+                  TU PAQUETE ACTUAL
+                </span>
+
+                <strong>
+                  {eventType === "xv"
+                    ? "XV años"
+                    : "Boda"}{" "}
+                  · {selectedPlan.name}
+                </strong>
+              </div>
+
+              <p>
+                Las funciones que ya incluye
+                tu paquete no generan cargos adicionales.
+              </p>
+            </div>
+
+            <div className={styles.grid}>
+              {availableExtras.map((extra) => {
+                const isSelected = effectiveExtras.some(
+                  (item) => item.id === extra.id
+                );
+
+                const isPersonalQR =
+                  extra.id === "qr";
+
+                const isGeneralQR =
+                  extra.id === "qr-general";
+
+                return (
+                  <article
+                    key={extra.id}
+                    className={[
+                      styles.card,
+                      isSelected
+                        ? styles.selectedCard
+                        : "",
+                    ].filter(Boolean).join(" ")}
+                  >
+                    <div className={styles.cardTop}>
+                      <span className={styles.cardLabel}>
+                        {extra.category}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={[
+                          styles.addButton,
+                          isSelected
+                            ? styles.addedButton
+                            : "",
+                        ].filter(Boolean).join(" ")}
+                        onClick={() =>
+                          toggleExtra(extra)
+                        }
+                        aria-label={
+                          isSelected
+                            ? `Quitar ${extra.titulo}`
+                            : `Agregar ${extra.titulo}`
+                        }
+                        aria-pressed={isSelected}
+                      >
+                        {isSelected ? "✓" : "+"}
+                      </button>
+                    </div>
+
+                    <h3 className={styles.cardTitle}>
+                      {extra.titulo}
+                    </h3>
+
+                    <p className={styles.description}>
+                      {extra.descripcion}
+                    </p>
+
+                    {isGeneralQR && (
+                      <p className={styles.requirement}>
+                        QR único para compartir la invitación.
+                        No requiere control de invitados.
+                      </p>
+                    )}
+
+                    {isPersonalQR &&
+                      planLevel < 4 && (
+                        <p className={styles.requirement}>
+                          Requiere control de invitados.
+                          Se agregará automáticamente
+                          al seleccionarlo.
+                        </p>
+                      )}
+
+                    <div className={styles.cardBottom}>
+                      <span className={styles.price}>
+                        +{formatMoney(extra.precio)}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={styles.miniAction}
+                        onClick={() =>
+                          toggleExtra(extra)
+                        }
+                      >
+                        {isSelected
+                          ? "Quitar"
+                          : "Agregar"}
+
+                        <span aria-hidden="true">
+                          {isSelected ? "−" : "+"}
+                        </span>
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {availableExtras.length === 0 && (
+              <p className={styles.empty}>
+                Tu paquete ya incluye todas
+                las funciones disponibles.
+              </p>
+            )}
+
+            <div
+              className={styles.cartBox}
+              id="resumen"
+            >
+              <div className={styles.cartContent}>
+                <span className={styles.cartLabel}>
+                  TU COTIZACIÓN
+                </span>
+
+                <strong>
+                  {eventType === "xv"
+                    ? "XV años"
+                    : "Boda"}{" "}
+                  · {selectedPlan.name}
+                </strong>
+
+                <p>
+                  {effectiveExtras.length === 0
+                    ? "Sin complementos adicionales"
+                    : `${effectiveExtras.length} complemento(s) seleccionado(s)`}
+                </p>
+
+                <strong>
+                  Total: {formatMoney(total)}
+                </strong>
+              </div>
+
+              <div className={styles.cartActions}>
+                <button
+                  type="button"
+                  className={styles.viewButton}
+                  onClick={() =>
+                    setShowSummary(true)
+                  }
+                >
+                  Ver resumen
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.extraButton}
+                  onClick={sendToWhatsApp}
+                >
+                  Cotizar por WhatsApp ↗
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+
+        {showSummary && selectedPlan && (
           <div
             className={styles.modalOverlay}
-            onClick={() => setShowSummary(false)}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setShowSummary(false);
+              }
+            }}
           >
             <div
               className={styles.modal}
-              onClick={(event) => event.stopPropagation()}
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="wedly-summary-title"
             >
               <button
+                type="button"
+                ref={closeRef}
                 className={styles.closeButton}
-                onClick={() => setShowSummary(false)}
+                onClick={() =>
+                  setShowSummary(false)
+                }
+                aria-label="Cerrar resumen"
               >
                 ×
               </button>
 
-              <span className={styles.modalLabel}>Resumen</span>
+              <span className={styles.modalLabel}>
+                TU SELECCIÓN WEDLY
+              </span>
 
-              <h3>Tu invitación personalizada</h3>
-
-              <div className={styles.summaryBlock}>
-                <h4>Paquete seleccionado</h4>
-
-                {selectedPlan ? (
-                  <div className={styles.summaryItem}>
-                    <span>{selectedPlan.name}</span>
-                    <strong>${selectedPlan.price} MXN</strong>
-                  </div>
-                ) : (
-                  <p className={styles.emptyText}>
-                    Aún no seleccionas un paquete.
-                  </p>
-                )}
-              </div>
+              <h3 id="wedly-summary-title">
+                Resumen de tu invitación
+              </h3>
 
               <div className={styles.summaryBlock}>
-                <h4>Extras agregados</h4>
+                <div className={styles.summaryItem}>
+                  <span>
+                    {eventType === "xv"
+                      ? "XV años"
+                      : "Boda"}{" "}
+                    · {selectedPlan.name}
+                  </span>
 
-                {selectedExtras.length > 0 ? (
-                  selectedExtras.map((extra) => (
-                    <div className={styles.summaryItem} key={extra.id}>
+                  <strong>
+                    {formatMoney(planTotal)}
+                  </strong>
+                </div>
+
+                {effectiveExtras.length > 0 ? (
+                  effectiveExtras.map((extra) => (
+                    <div
+                      className={styles.summaryItem}
+                      key={extra.id}
+                    >
                       <span>{extra.titulo}</span>
 
-                      <div className={styles.summaryActions}>
-                        <strong>${extra.precio} MXN</strong>
-
-                        <button onClick={() => toggleExtra(extra)}>
-                          Quitar
-                        </button>
-                      </div>
+                      <strong>
+                        {formatMoney(extra.precio)}
+                      </strong>
                     </div>
                   ))
                 ) : (
                   <p className={styles.emptyText}>
-                    Aún no agregas extras.
+                    Sin complementos adicionales.
                   </p>
                 )}
               </div>
 
               <div className={styles.totalBox}>
-                <span>Total aproximado</span>
-                <strong>${total} MXN</strong>
+                <span>TOTAL ESTIMADO</span>
+                <strong>
+                  {formatMoney(total)}
+                </strong>
               </div>
 
-              <button className={styles.whatsappButton} onClick={sendToWhatsApp}>
-                Enviar selección por WhatsApp
-              </button>
+              <p className={styles.disclaimer}>
+                El precio corresponde a las funciones
+                seleccionadas. Los detalles finales
+                se confirman con el equipo Wedly.
+              </p>
+
+              <div className={styles.summaryActions}>
+                <button
+                  type="button"
+                  className={styles.whatsappButton}
+                  onClick={sendToWhatsApp}
+                >
+                  Enviar cotización por WhatsApp ↗
+                </button>
+              </div>
             </div>
           </div>
         )}
