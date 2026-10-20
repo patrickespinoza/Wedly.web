@@ -1,4 +1,3 @@
-
 /* ==========================================
    WEDLY — GALERÍA CINEMATOGRÁFICA
    SIN BOTONES NI INDICADORES
@@ -253,9 +252,7 @@
 
   padding-top: 10px;
 
-  border-top: 1px solid rgba(
-    255, 255, 255, 0.5
-  );
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 
   font-size: 10px;
   font-weight: 500;
@@ -437,5 +434,182 @@
 
   .slide:hover .image {
     transform: none;
+  }
+}
+
+/* ==========================================
+   WEDLY — FLECHAS DE NAVEGACIÓN
+   VISIBLES SOLO EN COMPUTADORA
+========================================== */
+
+/* CONTENEDOR GENERAL */
+
+.carouselShell {
+  position: relative;
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* EL CARRUSEL MANTIENE SU TAMAÑO */
+
+.carouselShell .carouselArea {
+  width: 100%;
+  max-width: 1100px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   BOTONES LATERALES
+========================================== */
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(167, 139, 96, 0.5);
+  border-radius: 50%;
+
+  background: #fffefa;
+  color: #292723;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  box-shadow: 0 5px 20px rgba(41, 39, 35, 0.08);
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.navButton span {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: -4px;
+}
+
+.navButton:hover {
+  background: #292723;
+  border-color: #292723;
+  color: #ffffff;
+
+  box-shadow: 0 8px 24px rgba(41, 39, 35, 0.15);
+}
+
+.navButton:focus-visible {
+  outline: 2px solid #a78b60;
+  outline-offset: 4px;
+}
+
+/* POSICIÓN DE CADA FLECHA */
+
+.navPrevious {
+  left: 0;
+}
+
+.navNext {
+  right: 0;
+}
+
+/* ==========================================
+   COMPUTADORA
+========================================== */
+
+@media (min-width: 1001px) {
+  .carouselShell {
+    padding: 0 60px;
+    box-sizing: border-box;
+  }
+
+  .carouselShell .carouselArea {
+    max-width: 1100px;
+  }
+
+  /* Ocultar texto de deslizar */
+  .bottomNote {
+    display: none;
+  }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (min-width: 601px) and (max-width: 1000px) {
+  .carouselShell {
+    padding: 0 54px;
+    box-sizing: border-box;
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navButton span {
+    font-size: 29px;
+  }
+
+  .bottomNote {
+    display: none;
+  }
+}
+
+/* ==========================================
+   CELULAR
+   SIN FLECHAS, SOLO DESLIZAMIENTO
+========================================== */
+
+@media (max-width: 600px) {
+  .carouselShell {
+    display: block;
+    padding: 0;
+  }
+
+  .carouselShell .carouselArea {
+    max-width: 430px;
+    width: 100%;
+  }
+
+  .navButton {
+    display: none;
+  }
+
+  .bottomNote {
+    display: block;
+    margin: 22px auto 0;
+    text-align: center;
+  }
+}
+
+/* ==========================================
+   MOVIMIENTO REDUCIDO
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navButton {
+    transition: none;
   }
 }

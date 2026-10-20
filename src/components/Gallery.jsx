@@ -2,6 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Gallery.module.css";
 
+// ==========================================
+// INVITACIONES
+// ==========================================
+
 const invitations = {
   boda: [
     {
@@ -58,10 +62,11 @@ const invitations = {
   ],
 };
 
-// Cambio automático cada 6 segundos
-const AUTO_INTERVAL = 6000;
+// ==========================================
+// CONFIGURACIÓN
+// ==========================================
 
-// Pausa después de deslizar manualmente
+const AUTO_INTERVAL = 6000;
 const RESUME_DELAY = 12000;
 
 export default function Gallery() {
@@ -81,7 +86,7 @@ export default function Gallery() {
   const total = currentInvitations.length;
 
   // ==========================================
-  // DESPLAZAR CARRUSEL
+  // MOVER CARRUSEL
   // ==========================================
 
   const goTo = (index, behavior = "smooth") => {
@@ -96,10 +101,35 @@ export default function Gallery() {
 
     activeIndexRef.current = next;
 
+    const targetLeft =
+      card.getBoundingClientRect().left -
+      carousel.getBoundingClientRect().left +
+      carousel.scrollLeft;
+
     carousel.scrollTo({
-      left: card.offsetLeft - carousel.offsetLeft,
-      behavior: reducedMotion ? "instant" : behavior,
+      left: targetLeft,
+      behavior: reducedMotion ? "auto" : behavior,
     });
+  };
+
+  // ==========================================
+  // BOTONES IZQUIERDA / DERECHA
+  // ==========================================
+
+  const handlePrevious = () => {
+    pauseTemporarily();
+
+    const previous = activeIndexRef.current - 1;
+
+    goTo(previous);
+  };
+
+  const handleNext = () => {
+    pauseTemporarily();
+
+    const next = activeIndexRef.current + 1;
+
+    goTo(next);
   };
 
   // ==========================================
@@ -109,9 +139,7 @@ export default function Gallery() {
   const pauseTemporarily = () => {
     setPaused(true);
 
-    if (pauseTimerRef.current) {
-      clearTimeout(pauseTimerRef.current);
-    }
+    clearTimeout(pauseTimerRef.current);
 
     pauseTimerRef.current = setTimeout(() => {
       pauseTimerRef.current = null;
@@ -120,7 +148,7 @@ export default function Gallery() {
   };
 
   // ==========================================
-  // DETECTAR DESLIZAMIENTO
+  // DETECTAR POSICIÓN
   // ==========================================
 
   const handleScroll = () => {
@@ -129,17 +157,16 @@ export default function Gallery() {
     if (!carousel) return;
 
     const cards = Array.from(carousel.children);
-    const currentPosition = carousel.scrollLeft;
+    const carouselLeft =
+      carousel.getBoundingClientRect().left;
 
     let nearestIndex = 0;
     let nearestDistance = Infinity;
 
     cards.forEach((card, index) => {
-      const cardPosition =
-        card.offsetLeft - carousel.offsetLeft;
-
       const distance = Math.abs(
-        cardPosition - currentPosition
+        card.getBoundingClientRect().left -
+        carouselLeft
       );
 
       if (distance < nearestDistance) {
@@ -152,7 +179,7 @@ export default function Gallery() {
   };
 
   // ==========================================
-  // DESLIZAMIENTO CON EL DEDO
+  // DESLIZAMIENTO TÁCTIL
   // ==========================================
 
   const handleTouchStart = (event) => {
@@ -186,30 +213,25 @@ export default function Gallery() {
   const changeEvent = (type) => {
     if (type === eventType) return;
 
-    if (pauseTimerRef.current) {
-      clearTimeout(pauseTimerRef.current);
-      pauseTimerRef.current = null;
-    }
+    clearTimeout(pauseTimerRef.current);
+    pauseTimerRef.current = null;
 
     activeIndexRef.current = 0;
     setPaused(false);
     setEventType(type);
   };
 
-  // Reiniciar al cambiar celebración
   useEffect(() => {
     activeIndexRef.current = 0;
 
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: 0,
-        behavior: "instant",
-      });
-    }
+    carouselRef.current?.scrollTo({
+      left: 0,
+      behavior: "auto",
+    });
   }, [eventType]);
 
   // ==========================================
-  // ACCESIBILIDAD
+  // MOVIMIENTO REDUCIDO
   // ==========================================
 
   useEffect(() => {
@@ -234,7 +256,7 @@ export default function Gallery() {
   }, []);
 
   // ==========================================
-  // DETECTAR VISIBILIDAD
+  // VISIBILIDAD DE LA SECCIÓN
   // ==========================================
 
   useEffect(() => {
@@ -246,9 +268,7 @@ export default function Gallery() {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      {
-        threshold: 0.2,
-      }
+      { threshold: 0.2 }
     );
 
     observer.observe(section);
@@ -257,7 +277,7 @@ export default function Gallery() {
   }, []);
 
   // ==========================================
-  // MOVIMIENTO AUTOMÁTICO
+  // CAMBIO AUTOMÁTICO
   // ==========================================
 
   useEffect(() => {
@@ -273,10 +293,7 @@ export default function Gallery() {
     const timer = setInterval(() => {
       if (document.hidden) return;
 
-      const next =
-        (activeIndexRef.current + 1) % total;
-
-      goTo(next);
+      goTo(activeIndexRef.current + 1);
     }, AUTO_INTERVAL);
 
     return () => clearInterval(timer);
@@ -294,9 +311,7 @@ export default function Gallery() {
 
   useEffect(() => {
     return () => {
-      if (pauseTimerRef.current) {
-        clearTimeout(pauseTimerRef.current);
-      }
+      clearTimeout(pauseTimerRef.current);
     };
   }, []);
 
@@ -310,6 +325,7 @@ export default function Gallery() {
       <div className={styles.container}>
 
         {/* ENCABEZADO */}
+
         <header className={styles.header}>
           <span className={styles.eyebrow}>
             WEDLY · NUESTRAS INVITACIONES
@@ -319,7 +335,7 @@ export default function Gallery() {
             className={styles.title}
             id="titulo-galeria"
           >
-            Ejemplos
+            Diseños
           </h2>
 
           <p className={styles.subtitle}>
@@ -327,7 +343,8 @@ export default function Gallery() {
             para tu celebración.
           </p>
 
-          {/* SELECTOR DE CELEBRACIÓN */}
+          {/* SELECTOR */}
+
           <div
             className={styles.eventSelector}
             role="group"
@@ -361,109 +378,143 @@ export default function Gallery() {
           </div>
         </header>
 
-        {/* CARRUSEL */}
-        <div className={styles.carouselArea}>
-          <div
-            key={eventType}
-            ref={carouselRef}
-            className={styles.carousel}
-            onScroll={handleScroll}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onWheel={(event) => {
-              if (Math.abs(event.deltaX) > 5) {
-                pauseTemporarily();
-              }
-            }}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => {
-              if (!pauseTimerRef.current) {
-                setPaused(false);
-              }
-            }}
-            onFocusCapture={() => setPaused(true)}
-            onBlurCapture={(event) => {
-              if (
-                !event.currentTarget.contains(
-                  event.relatedTarget
-                ) &&
-                !pauseTimerRef.current
-              ) {
-                setPaused(false);
-              }
-            }}
-            aria-label={`Galería de invitaciones de ${
-              eventType === "boda"
-                ? "boda"
-                : "XV años"
-            }`}
+        {/* ======================================
+            CARRUSEL CON FLECHAS
+        ====================================== */}
+
+        <div className={styles.carouselShell}>
+
+          {/* FLECHA IZQUIERDA */}
+
+          <button
+            type="button"
+            className={`${styles.navButton} ${styles.navPrevious}`}
+            onClick={handlePrevious}
+            aria-label="Ver diseño anterior"
           >
-            {currentInvitations.map((inv, index) => (
-              <a
-                key={`${eventType}-${inv.id}`}
-                className={styles.slide}
-                href={inv.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Ver invitación ${inv.name}`}
-                onClick={(event) => {
-                  if (suppressClickRef.current) {
-                    event.preventDefault();
-                    suppressClickRef.current = false;
-                  } else {
-                    pauseTemporarily();
-                  }
-                }}
-              >
-                <div className={styles.imageWrapper}>
-                  {/* IMAGEN CON AJUSTE PARA PLUS */}
-                  <img
-                    src={inv.image}
-                    alt={`Invitación digital ${inv.name}`}
-                    className={`${styles.image} ${
-                      inv.name === "Plus"
-                        ? styles.imagePlus
-                        : ""
-                    }`}
-                    loading={
-                      index === 0 ? "eager" : "lazy"
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          {/* CARRUSEL */}
+
+          <div className={styles.carouselArea}>
+            <div
+              key={eventType}
+              ref={carouselRef}
+              className={styles.carousel}
+              onScroll={handleScroll}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onWheel={(event) => {
+                if (Math.abs(event.deltaX) > 5) {
+                  pauseTemporarily();
+                }
+              }}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => {
+                if (!pauseTimerRef.current) {
+                  setPaused(false);
+                }
+              }}
+              onFocusCapture={() => setPaused(true)}
+              onBlurCapture={(event) => {
+                if (
+                  !event.currentTarget.contains(
+                    event.relatedTarget
+                  ) &&
+                  !pauseTimerRef.current
+                ) {
+                  setPaused(false);
+                }
+              }}
+              aria-label={`Galería de invitaciones de ${
+                eventType === "boda"
+                  ? "boda"
+                  : "XV años"
+              }`}
+            >
+              {currentInvitations.map((inv, index) => (
+                <a
+                  key={`${eventType}-${inv.id}`}
+                  className={styles.slide}
+                  href={inv.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver invitación ${inv.name}`}
+                  onClick={(event) => {
+                    if (suppressClickRef.current) {
+                      event.preventDefault();
+                      suppressClickRef.current = false;
+                    } else {
+                      pauseTemporarily();
                     }
-                    decoding="async"
-                    draggable="false"
-                  />
+                  }}
+                >
+                  <div className={styles.imageWrapper}>
 
-                  <div
-                    className={styles.imageGradient}
-                  />
+                    <img
+                      src={inv.image}
+                      alt={`Invitación digital ${inv.name}`}
+                      className={`${styles.image} ${
+                        inv.name === "Plus"
+                          ? styles.imagePlus
+                          : ""
+                      }`}
+                      loading={
+                        index === 0 ? "eager" : "lazy"
+                      }
+                      decoding="async"
+                      draggable="false"
+                    />
 
-                  {/* INFORMACIÓN SOBRE IMAGEN */}
-                  <div className={styles.slideContent}>
-                    <span className={styles.slideCategory}>
-                      {eventType === "boda"
-                        ? "BODA"
-                        : "XV AÑOS"}
-                    </span>
+                    <div
+                      className={styles.imageGradient}
+                    />
 
-                    <h3 className={styles.slideTitle}>
-                      {inv.name}
-                    </h3>
-
-                    <span className={styles.slideLink}>
-                      VER INVITACIÓN
-                      <span aria-hidden="true">
-                        ↗
+                    <div className={styles.slideContent}>
+                      <span
+                        className={styles.slideCategory}
+                      >
+                        {eventType === "boda"
+                          ? "BODA"
+                          : "XV AÑOS"}
                       </span>
-                    </span>
+
+                      <h3 className={styles.slideTitle}>
+                        {inv.name}
+                      </h3>
+
+                      <span className={styles.slideLink}>
+                        VER INVITACIÓN
+                        <span aria-hidden="true">
+                          ↗
+                        </span>
+                      </span>
+                    </div>
+
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              ))}
+            </div>
           </div>
+
+          {/* FLECHA DERECHA */}
+
+          <button
+            type="button"
+            className={`${styles.navButton} ${styles.navNext}`}
+            onClick={handleNext}
+            aria-label="Ver siguiente diseño"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+
         </div>
 
-        {/* NOTA INFERIOR */}
+        {/* INDICACIÓN SOLO EN CELULAR */}
+
         <p className={styles.bottomNote}>
-          «Desliza para ver más ejemplos»
+          Desliza para ver más diseños
         </p>
 
       </div>
